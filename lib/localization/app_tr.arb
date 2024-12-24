@@ -20,5 +20,7 @@
   "or": "Ve ya",
   "name": "Adınız",
   "pleaseEnterName": "Lütfen adınızı giriniz",
-  "forgotPasswordSuccess": "Şifre sıfırlama linki email adresinize gönderildi"
+  "forgotPasswordSuccess": "Şifre sıfırlama linki email adresinize gönderildi",
+  "getStarted": "Başla",
+  "next": "Sonraki"
 }

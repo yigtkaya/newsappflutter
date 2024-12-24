@@ -229,6 +229,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password reset link sent to your email'**
   String get forgotPasswordSuccess;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
 }
 
 class _AppLocalizationsDelegate

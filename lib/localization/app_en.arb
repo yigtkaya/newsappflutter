@@ -20,5 +20,7 @@
   "or": "Or",
   "name": "Name",
   "pleaseEnterName": "Please enter your name",
-  "forgotPasswordSuccess": "Password reset link sent to your email"
+  "forgotPasswordSuccess": "Password reset link sent to your email",
+  "getStarted": "Get Started",
+  "next": "Next"
 }

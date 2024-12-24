@@ -75,4 +75,10 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get forgotPasswordSuccess =>
       'Şifre sıfırlama linki email adresinize gönderildi';
+
+  @override
+  String get getStarted => 'Başla';
+
+  @override
+  String get next => 'Sonraki';
 }
