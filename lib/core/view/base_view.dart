@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:unipool/core/cubit/base_cubit.dart';
+import 'package:newsappflutter/core/cubit/base_cubit.dart';
 
+/// Create function type.
 typedef Create<C extends StateStreamableSource<Object?>> = C Function();
 
 /// BaseState is the base widget for all the states.
 abstract base class BaseView<C extends BaseCubit<S>, S extends BaseState> extends StatefulWidget {
+  /// Constructor for BaseView.
   const BaseView({
     this.cubit,
     this.value,
@@ -18,17 +20,26 @@ abstract base class BaseView<C extends BaseCubit<S>, S extends BaseState> extend
           !(cubit != null && value != null),
           'cubit and value can not be assigned at the same time.',
         );
+
+  /// Cubit for the view.
   final Create<C>? cubit;
+
+  /// Value for the view.
   final Create<C>? value;
 
+  /// Builder for the view.
   Widget builder(BuildContext context, C cubit);
 
   @override
   State<BaseView> createState() => _BaseViewState<C, S>();
 }
 
+/// _BaseViewState is the state for the BaseView.
 final class _BaseViewState<C extends BaseCubit<S>, S extends BaseState> extends State<BaseView> {
+  /// Cubit for the view.
   late final C? cubit;
+
+  /// Value for the view.
   late final C? value;
 
   @override

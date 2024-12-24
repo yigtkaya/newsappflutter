@@ -6,7 +6,7 @@ import 'package:newsappflutter/localization/models/language.dart';
 const Language english = Language(
   id: 1,
   name: 'English',
-  image: '🇺🇸',
+  imagePath: '🇺🇸',
   urlCode: 'en',
   locale: Locale('en'),
   currency: englishCurrency,

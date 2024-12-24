@@ -1,5 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:newsappflutter/features/auth/presentation/forgot_password_view.dart';
+import 'package:newsappflutter/features/auth/presentation/login_view.dart';
+import 'package:newsappflutter/features/auth/presentation/sign_up_view.dart';
+import 'package:newsappflutter/features/root/home_view.dart';
+import 'package:newsappflutter/features/splash/splash_view.dart';
 
 part 'app_router.gr.dart';
 
@@ -14,7 +19,7 @@ class AppRouter extends RootStackRouter {
 
   /// Default route type for the app.
   @override
-  RouteType get defaultRouteType => RouteType.adaptive();
+  RouteType get defaultRouteType => const RouteType.adaptive();
 
   @override
   List<AutoRoute> get routes => [
@@ -22,6 +27,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: SplashRoute.page,
           initial: true,
+        ),
+        AutoRoute(
+          page: HomeRoute.page,
         ),
         AutoRoute(
           page: LoginRoute.page,

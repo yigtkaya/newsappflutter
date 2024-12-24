@@ -12,7 +12,7 @@ class Language with LanguageMappable {
   const Language({
     required this.id,
     required this.name,
-    required this.image,
+    required this.imagePath,
     required this.urlCode,
     required this.locale,
     required this.currency,
@@ -25,7 +25,7 @@ class Language with LanguageMappable {
   final String name;
 
   /// Image of the language.
-  final String image;
+  final String imagePath;
 
   /// Url code of the language.
   final String urlCode;

@@ -1,16 +1,21 @@
-part of 'language_bloc.dart';
+part of 'language_cubit.dart';
 
 @immutable
-class LanguageState extends Equatable {
-  LanguageState({
+
+/// Language state class.
+final class LanguageState extends BaseState {
+  /// Constructor for LanguageState.
+  const LanguageState({
     Language? selectedLanguage,
   }) : selectedLanguage = selectedLanguage ?? turkish;
 
+  /// Selected language.
   final Language selectedLanguage;
 
   @override
   List<Object> get props => [selectedLanguage];
 
+  /// Copy with method for LanguageState.
   LanguageState copyWith({Language? selectedLanguage}) {
     return LanguageState(
       selectedLanguage: selectedLanguage ?? this.selectedLanguage,

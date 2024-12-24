@@ -5,14 +5,20 @@ import 'package:flutter/material.dart';
 @immutable
 final class CustomRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   @override
-  void didPush(Route route, Route? previousRoute) async {
+  Future<void> didPush(
+    Route<dynamic> route,
+    Route<dynamic>? previousRoute,
+  ) async {
     super.didPush(route, previousRoute);
     // close if keyboard is open
     FocusManager.instance.primaryFocus?.unfocus();
   }
 
   @override
-  void didPop(Route route, Route? previousRoute) async {
+  Future<void> didPop(
+    Route<dynamic> route,
+    Route<dynamic>? previousRoute,
+  ) async {
     super.didPop(route, previousRoute);
 
     // close if keyboard is open
