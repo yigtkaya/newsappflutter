@@ -20,8 +20,9 @@ final class SplashView extends StatelessWidget {
           Future.delayed(
             const Duration(seconds: 2),
             () {
+              if (!context.mounted) return;
               context.router.replace(
-                const HomeRoute(),
+                const RootRoute(),
               );
             },
           );

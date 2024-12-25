@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:newsappflutter/features/all_news/data/models/response/news_response_model.dart';
-import 'package:newsappflutter/features/news/data/models/requests/news_request.dart';
+import 'package:newsappflutter/features/all_news/data/models/requests/news_request.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'news_api_client.g.dart';

@@ -12,6 +12,8 @@ import 'package:newsappflutter/core/constants/app_constants.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
+import 'package:newsappflutter/core/environment/app_environment.dart';
+import 'package:newsappflutter/core/environment/envied.dart';
 import 'package:newsappflutter/core/observers/custom_route_observer.dart';
 import 'package:newsappflutter/core/router/app_router.dart';
 import 'package:newsappflutter/core/theme/app_theme.dart';

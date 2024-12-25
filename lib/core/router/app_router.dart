@@ -5,6 +5,7 @@ import 'package:newsappflutter/features/auth/presentation/login_view.dart';
 import 'package:newsappflutter/features/auth/presentation/sign_up_view.dart';
 import 'package:newsappflutter/features/onboarding/onboarding_view.dart';
 import 'package:newsappflutter/features/root/home_view.dart';
+import 'package:newsappflutter/features/root/root_view.dart';
 import 'package:newsappflutter/features/splash/splash_view.dart';
 
 part 'app_router.gr.dart';
@@ -44,30 +45,15 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: OnboardingRoute.page,
         ),
-// CustomRoute(
-//           page: RootRoute.page,
-//           transitionsBuilder: TransitionsBuilders.fadeIn,
-//           children: [
-//             AutoRoute(page: LandingPageRoute.page),
-//             AutoRoute(page: ShareTripRoute.page),
-//             AutoRoute(
-//               page: ChatRoomRoute.page,
-//               children: [
-//                 AutoRoute(
-//                   page: MessagesRoute.page,
-//                 ),
-//               ],
-//             ),
-//             AutoRoute(page: MyTripsRoute.page),
-//             AutoRoute(
-//               page: ProfileRoute.page,
-//               children: [
-//                 AutoRoute(
-//                   page: EditProfileRoute.page,
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
+        CustomRoute<RootRoute>(
+          page: RootRoute.page,
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+          children: [
+            AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: HomeRoute.page),
+          ],
+        ),
       ];
 }

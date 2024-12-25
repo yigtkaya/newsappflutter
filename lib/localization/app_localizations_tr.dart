@@ -10,7 +10,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get signIn => 'Giriş Yap';
 
   @override
-  String get signInDescription => 'Bilgi edinmek için kolayca giriş yapın ve haberleri keşfedin';
+  String get signInDescription =>
+      'Bilgi edinmek için kolayca giriş yapın ve haberleri keşfedin';
 
   @override
   String get signInWithGoogle => 'Google ile giriş yap';
@@ -34,7 +35,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get signUp => 'Hesap oluştur';
 
   @override
-  String get signUpDescription => 'Hesap oluşturmak ve daha kişiselleştirilmiş haberler almak için devam edin';
+  String get signUpDescription =>
+      'Hesap oluşturmak ve daha kişiselleştirilmiş haberler almak için devam edin';
 
   @override
   String get forgotPasswordTitle => 'Şifremi unuttum?';
@@ -52,7 +54,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pleaseEnterPassword => 'Lütfen şifrenizi giriniz';
 
   @override
-  String get aPasswordShouldBeAtLeast8Characters => 'Şifreniz en az 8 karakter olmalıdır';
+  String get aPasswordShouldBeAtLeast8Characters =>
+      'Şifreniz en az 8 karakter olmalıdır';
 
   @override
   String get pleaseEnterEmail => 'Lütfen email adresinizi giriniz';
@@ -70,7 +73,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pleaseEnterName => 'Lütfen adınızı giriniz';
 
   @override
-  String get forgotPasswordSuccess => 'Şifre sıfırlama linki email adresinize gönderildi';
+  String get forgotPasswordSuccess =>
+      'Şifre sıfırlama linki email adresinize gönderildi';
 
   @override
   String get getStarted => 'Başla';
