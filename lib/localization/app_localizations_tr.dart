@@ -81,4 +81,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get next => 'Sonraki';
+
+  @override
+  String get breakingNews => 'Son Dakika Haberler';
+
+  @override
+  String get seeAll => 'Hepsini Gör';
+
+  @override
+  String get somethingWentWrong => 'Bir şeyler ters gitti';
 }

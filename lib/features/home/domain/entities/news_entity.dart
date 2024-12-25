@@ -1,5 +1,5 @@
 import 'package:newsappflutter/core/cache/core/cache_model.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/article_model.dart';
+import 'package:newsappflutter/features/home/data/models/response/article_model.dart';
 
 final class NewsEntity with CacheModel {
   NewsEntity({

@@ -22,5 +22,8 @@
   "pleaseEnterName": "Lütfen adınızı giriniz",
   "forgotPasswordSuccess": "Şifre sıfırlama linki email adresinize gönderildi",
   "getStarted": "Başla",
-  "next": "Sonraki"
+  "next": "Sonraki",
+  "breakingNews": "Son Dakika Haberler",
+  "seeAll": "Hepsini Gör",
+  "somethingWentWrong": "Bir şeyler ters gitti"
 }

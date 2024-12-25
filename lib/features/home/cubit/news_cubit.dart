@@ -1,10 +1,10 @@
 import 'package:newsappflutter/core/cubit/base_cubit.dart';
 import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
 import 'package:newsappflutter/core/network/failure.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/meta_model.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/news_response_model.dart';
-import 'package:newsappflutter/features/all_news/domain/entities/news_entity.dart';
-import 'package:newsappflutter/features/all_news/domain/usecases/get_all_news_usecase.dart';
+import 'package:newsappflutter/features/home/data/models/response/meta_model.dart';
+import 'package:newsappflutter/features/home/data/models/response/news_response_model.dart';
+import 'package:newsappflutter/features/home/domain/entities/news_entity.dart';
+import 'package:newsappflutter/features/home/domain/usecases/get_all_news_usecase.dart';
 
 part 'news_state.dart';
 
@@ -24,7 +24,7 @@ final class NewsCubit extends BaseCubit<NewsState> {
     String? search,
     int? page,
   }) async {
-    emit(NewsLoading());
+    safeEmit(NewsLoading());
     final result = await _getAllNewsUsecase.call(
       locale: locale,
       limit: limit,
@@ -34,10 +34,10 @@ final class NewsCubit extends BaseCubit<NewsState> {
     );
 
     result.fold(
-      (failure) => emit(NewsFailure(failure: failure)),
+      (failure) => safeEmit(NewsFailure(failure: failure)),
       (news) {
         cacheNews(NewsEntity(articles: news.data));
-        emit(NewsSuccess(news: news));
+        safeEmit(NewsSuccess(news: news));
       },
     );
   }
@@ -67,7 +67,7 @@ final class NewsCubit extends BaseCubit<NewsState> {
       'news_cache_key',
     );
     if (cachedNews != null) {
-      emit(
+      safeEmit(
         NewsSuccess(
           news: NewsResponse(
             meta: Meta(
@@ -80,6 +80,14 @@ final class NewsCubit extends BaseCubit<NewsState> {
           ),
         ),
       );
+      return;
     }
+
+    // call getAllNews if no cached news
+    await getAllNews(
+      locale: 'tr',
+      limit: 3,
+      page: 1,
+    );
   }
 }

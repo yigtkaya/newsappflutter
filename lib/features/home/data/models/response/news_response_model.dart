@@ -1,6 +1,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/article_model.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/meta_model.dart';
+import 'package:newsappflutter/features/home/data/models/response/article_model.dart';
+import 'package:newsappflutter/features/home/data/models/response/meta_model.dart';
 
 part 'news_response_model.mapper.dart';
 

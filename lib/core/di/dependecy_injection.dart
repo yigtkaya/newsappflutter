@@ -3,11 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:newsappflutter/core/cache/hive/hive_manager.dart';
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/network/dio_client.dart';
-import 'package:newsappflutter/features/all_news/cubit/news_cubit.dart';
-import 'package:newsappflutter/features/all_news/data/datasources/news_api_client.dart';
-import 'package:newsappflutter/features/all_news/data/repositories/news_repository_impl.dart';
-import 'package:newsappflutter/features/all_news/domain/repository/news_repository.dart';
-import 'package:newsappflutter/features/all_news/domain/usecases/get_all_news_usecase.dart';
+import 'package:newsappflutter/features/home/cubit/news_cubit.dart';
+import 'package:newsappflutter/features/home/data/datasources/news_api_client.dart';
+import 'package:newsappflutter/features/home/data/repositories/news_repository_impl.dart';
+import 'package:newsappflutter/features/home/domain/repository/news_repository.dart';
+import 'package:newsappflutter/features/home/domain/usecases/get_all_news_usecase.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
 import 'package:newsappflutter/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:newsappflutter/features/auth/domain/repository/auth_repository.dart';
@@ -36,6 +36,7 @@ final class DependencyInjection {
     authSetup();
     languageSetup();
     networkSetup();
+    newsSetup();
   }
 
   /// Setup the authentication dependency injection.

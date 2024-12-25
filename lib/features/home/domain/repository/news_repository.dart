@@ -1,6 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:newsappflutter/core/network/failure.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/news_response_model.dart';
+import 'package:newsappflutter/features/home/data/models/response/news_response_model.dart';
 
 /// News Repository
 abstract interface class NewsRepository {

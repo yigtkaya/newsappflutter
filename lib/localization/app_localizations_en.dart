@@ -81,4 +81,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get next => 'Next';
+
+  @override
+  String get breakingNews => 'Breaking News';
+
+  @override
+  String get seeAll => 'See All';
+
+  @override
+  String get somethingWentWrong => 'Something went wrong';
 }

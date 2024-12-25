@@ -1,10 +1,10 @@
 import 'package:either_dart/either.dart';
 import 'package:newsappflutter/core/network/base_repository.dart';
 import 'package:newsappflutter/core/network/failure.dart';
-import 'package:newsappflutter/features/all_news/data/datasources/news_api_client.dart';
-import 'package:newsappflutter/features/all_news/data/models/requests/news_request.dart';
-import 'package:newsappflutter/features/all_news/data/models/response/news_response_model.dart';
-import 'package:newsappflutter/features/all_news/domain/repository/news_repository.dart';
+import 'package:newsappflutter/features/home/data/datasources/news_api_client.dart';
+import 'package:newsappflutter/features/home/data/models/requests/news_request.dart';
+import 'package:newsappflutter/features/home/data/models/response/news_response_model.dart';
+import 'package:newsappflutter/features/home/domain/repository/news_repository.dart';
 
 /// News Repository Implementation
 class NewsRepositoryImpl extends BaseRepository implements NewsRepository {
