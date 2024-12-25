@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:newsappflutter/core/cache/hive/hive_manager.dart';
 import 'package:newsappflutter/core/cache/product_cache.dart';
+import 'package:newsappflutter/core/network/dio_client.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
 import 'package:newsappflutter/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:newsappflutter/features/auth/domain/repository/auth_repository.dart';
@@ -11,6 +12,9 @@ import 'package:newsappflutter/features/auth/domain/usecases/listen_auth_state_u
 import 'package:newsappflutter/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:newsappflutter/features/news/data/datasources/news_api_client.dart';
+import 'package:newsappflutter/features/news/data/repositories/news_repository_impl.dart';
+import 'package:newsappflutter/features/news/domain/repositories/news_repository.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';
 
 /// Dependency injection class.
@@ -29,6 +33,7 @@ final class DependencyInjection {
 
     authSetup();
     languageSetup();
+    networkSetup();
   }
 
   /// Setup the authentication dependency injection.
@@ -65,6 +70,21 @@ final class DependencyInjection {
   /// Setup the language dependency injection.
   static void languageSetup() {
     _getIt.registerLazySingleton(LanguageCubit.new);
+  }
+
+  /// Setup the network dependency injection.
+  static void networkSetup() {
+    final dioClient = DioClient();
+
+    _getIt
+      ..registerLazySingleton<NewsApiClient>(
+        () => NewsApiClient(dioClient.dio),
+      )
+      ..registerLazySingleton<NewsRepository>(
+        () => NewsRepositoryImpl(
+          apiClient: _getIt(),
+        ),
+      );
   }
 
   /// Read an object from the dependency injection.

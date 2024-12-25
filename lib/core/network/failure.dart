@@ -15,3 +15,12 @@ final class AuthException extends Failure {
   /// Constructor for AuthException.
   AuthException({required super.message, required super.code});
 }
+
+/// Network failure class.
+final class NetworkFailure extends Failure {
+  /// Constructor for NetworkFailure.
+  NetworkFailure({
+    required super.message,
+    required super.code,
+  });
+}
