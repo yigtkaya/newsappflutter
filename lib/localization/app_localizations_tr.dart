@@ -90,4 +90,64 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get somethingWentWrong => 'Bir şeyler ters gitti';
+
+  @override
+  String get monday => 'Pazartesi';
+
+  @override
+  String get tuesday => 'Salı';
+
+  @override
+  String get wednesday => 'Çarşamba';
+
+  @override
+  String get thursday => 'Perşembe';
+
+  @override
+  String get friday => 'Cuma';
+
+  @override
+  String get saturday => 'Cumartesi';
+
+  @override
+  String get sunday => 'Pazar';
+
+  @override
+  String get today => 'Bugün';
+
+  @override
+  String get january => 'Ocak';
+
+  @override
+  String get february => 'Şubat';
+
+  @override
+  String get march => 'Mart';
+
+  @override
+  String get april => 'Nisan';
+
+  @override
+  String get may => 'Mayıs';
+
+  @override
+  String get june => 'Haziran';
+
+  @override
+  String get july => 'Temmuz';
+
+  @override
+  String get august => 'Ağustos';
+
+  @override
+  String get september => 'Eylül';
+
+  @override
+  String get october => 'Ekim';
+
+  @override
+  String get november => 'Kasım';
+
+  @override
+  String get december => 'Aralık';
 }

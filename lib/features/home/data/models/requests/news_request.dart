@@ -1,5 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:newsappflutter/core/environment/app_environment.dart';
+import 'package:newsappflutter/core/environment/envied.dart';
 
 part 'news_request.mapper.dart';
 
@@ -21,12 +21,12 @@ class NewsRequest with NewsRequestMappable {
 
   Map<String, dynamic> toQueryParameters() {
     return {
+      'api_token': DevEnv().newsApiKey,
       if (locale != null) 'locale': locale,
       if (limit != null) 'limit': limit.toString(),
       if (categories != null) 'categories': categories,
       if (search != null) 'search': search,
       if (page != null) 'page': page.toString(),
-      'api_token': AppEnvironment.newsApiKey,
     };
   }
 }

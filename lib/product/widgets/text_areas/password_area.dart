@@ -3,7 +3,7 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappflutter/core/constants/app_colors.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
-import 'package:newsappflutter/localization/cubit/language_cubit.dart';
+import 'package:newsappflutter/core/extensions/language_extension.dart';
 
 /// Password area.
 final class PasswordArea extends StatefulWidget {

@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:newsappflutter/core/cache/hive/hive_manager.dart';
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/network/dio_client.dart';
+import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/news_cubit.dart';
 import 'package:newsappflutter/features/home/data/datasources/news_api_client.dart';
 import 'package:newsappflutter/features/home/data/repositories/news_repository_impl.dart';
@@ -98,6 +99,9 @@ final class DependencyInjection {
         () => NewsCubit(
           _getIt(), // GetAllNewsUsecase
         ),
+      )
+      ..registerLazySingleton(
+        CarouselCubit.new,
       );
   }
 

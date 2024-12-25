@@ -33,17 +33,18 @@ class ArticleMapper extends ClassMapperBase<Article> {
   static String _$url(Article v) => v.url;
   static const Field<Article, String> _f$url = Field('url', _$url);
   static String? _$imageUrl(Article v) => v.imageUrl;
-  static const Field<Article, String> _f$imageUrl = Field('imageUrl', _$imageUrl);
+  static const Field<Article, String> _f$imageUrl = Field('imageUrl', _$imageUrl, key: 'image_url');
   static String _$language(Article v) => v.language;
   static const Field<Article, String> _f$language = Field('language', _$language);
   static DateTime _$publishedAt(Article v) => v.publishedAt;
-  static const Field<Article, DateTime> _f$publishedAt = Field('publishedAt', _$publishedAt);
+  static const Field<Article, DateTime> _f$publishedAt = Field('publishedAt', _$publishedAt, key: 'published_at');
   static String _$source(Article v) => v.source;
   static const Field<Article, String> _f$source = Field('source', _$source);
   static List<String> _$categories(Article v) => v.categories;
   static const Field<Article, List<String>> _f$categories = Field('categories', _$categories);
   static double? _$relevanceScore(Article v) => v.relevanceScore;
-  static const Field<Article, double> _f$relevanceScore = Field('relevanceScore', _$relevanceScore, opt: true);
+  static const Field<Article, double> _f$relevanceScore =
+      Field('relevanceScore', _$relevanceScore, key: 'relevance_score', opt: true);
 
   @override
   final MappableFields<Article> fields = const {

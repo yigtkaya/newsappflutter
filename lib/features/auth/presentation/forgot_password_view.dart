@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappflutter/core/constants/app_colors.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/extensions/future_extension.dart';
+import 'package:newsappflutter/core/extensions/language_extension.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
 import 'package:newsappflutter/features/auth/presentation/login_view.dart';
 import 'package:newsappflutter/features/auth/presentation/sign_up_view.dart';
-import 'package:newsappflutter/localization/cubit/language_cubit.dart';
 import 'package:newsappflutter/product/widgets/text_areas/email_area.dart';
 
 /// Forgot password view.

@@ -22,9 +22,10 @@ class _NewsApiClient implements NewsApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<NewsResponse> getTopStories(NewsRequest request) async {
+  Future<NewsResponse> getTopStories(Map<String, dynamic> queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<NewsResponse>(Options(
@@ -55,9 +56,10 @@ class _NewsApiClient implements NewsApiClient {
   }
 
   @override
-  Future<NewsResponse> getAllNews(NewsRequest request) async {
+  Future<NewsResponse> getAllNews(Map<String, dynamic> queries) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<NewsResponse>(Options(
@@ -90,10 +92,11 @@ class _NewsApiClient implements NewsApiClient {
   @override
   Future<NewsResponse> getSimilarNews({
     required String uuid,
-    required NewsRequest request,
+    required Map<String, dynamic> queries,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<NewsResponse>(Options(

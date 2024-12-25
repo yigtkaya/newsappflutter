@@ -5,7 +5,7 @@ import 'package:newsappflutter/core/constants/app_colors.dart';
 import 'package:newsappflutter/core/constants/app_constants.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
-import 'package:newsappflutter/localization/cubit/language_cubit.dart';
+import 'package:newsappflutter/core/extensions/language_extension.dart';
 
 /// Email area.
 final class EmailArea extends StatefulWidget {

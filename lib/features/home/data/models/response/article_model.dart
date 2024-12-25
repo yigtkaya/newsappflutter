@@ -25,10 +25,13 @@ class Article with ArticleMappable {
   final String? keywords;
   final String snippet;
   final String url;
+  @MappableField(key: 'image_url')
   final String? imageUrl;
   final String language;
+  @MappableField(key: 'published_at')
   final DateTime publishedAt;
   final String source;
   final List<String> categories;
+  @MappableField(key: 'relevance_score')
   final double? relevanceScore;
 }

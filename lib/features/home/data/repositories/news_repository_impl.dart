@@ -21,13 +21,15 @@ class NewsRepositoryImpl extends BaseRepository implements NewsRepository {
     int? limit,
     String? categories,
   }) {
+    final request = NewsRequest(
+      locale: locale,
+      limit: limit,
+      categories: categories,
+    );
+
     return handleNetworkCall(
       call: () => _apiClient.getTopStories(
-        NewsRequest(
-          locale: locale,
-          limit: limit,
-          categories: categories,
-        ),
+        request.toQueryParameters(),
       ),
     );
   }
@@ -40,16 +42,16 @@ class NewsRepositoryImpl extends BaseRepository implements NewsRepository {
     String? search,
     int? page,
   }) {
+    final request = NewsRequest(
+      locale: locale,
+      limit: limit,
+      categories: categories,
+      search: search,
+      page: page,
+    );
+
     return handleNetworkCall(
-      call: () => _apiClient.getAllNews(
-        NewsRequest(
-          locale: locale,
-          limit: limit,
-          categories: categories,
-          search: search,
-          page: page,
-        ),
-      ),
+      call: () => _apiClient.getAllNews(request.toQueryParameters()),
     );
   }
 
@@ -58,10 +60,11 @@ class NewsRepositoryImpl extends BaseRepository implements NewsRepository {
     required String uuid,
     int? limit,
   }) {
+    final request = NewsRequest(limit: limit);
     return handleNetworkCall(
       call: () => _apiClient.getSimilarNews(
         uuid: uuid,
-        request: NewsRequest(limit: limit),
+        queries: request.toQueryParameters(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
+import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/news_cubit.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';
@@ -18,4 +19,6 @@ final class DepInItems {
   static AuthCubit get authCubit => DependencyInjection.read<AuthCubit>();
 
   static NewsCubit get newsCubit => DependencyInjection.read<NewsCubit>();
+
+  static CarouselCubit get carouselCubit => DependencyInjection.read<CarouselCubit>();
 }
