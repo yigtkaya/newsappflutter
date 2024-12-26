@@ -4,7 +4,8 @@ import 'package:newsappflutter/core/cache/hive/hive_manager.dart';
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/network/dio_client.dart';
 import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
-import 'package:newsappflutter/features/home/cubit/news_cubit.dart';
+import 'package:newsappflutter/features/home/cubit/all_news/news_cubit.dart';
+import 'package:newsappflutter/features/home/cubit/top_news/top_news_cubit.dart';
 import 'package:newsappflutter/features/home/data/datasources/news_api_client.dart';
 import 'package:newsappflutter/features/home/data/repositories/news_repository_impl.dart';
 import 'package:newsappflutter/features/home/domain/repository/news_repository.dart';
@@ -18,6 +19,7 @@ import 'package:newsappflutter/features/auth/domain/usecases/listen_auth_state_u
 import 'package:newsappflutter/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:newsappflutter/features/home/domain/usecases/get_top_news_usecase.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';
 
 /// Dependency injection class.
@@ -98,6 +100,16 @@ final class DependencyInjection {
       ..registerLazySingleton(
         () => NewsCubit(
           _getIt(), // GetAllNewsUsecase
+        ),
+      )
+      ..registerLazySingleton(
+        () => GetTopNewsUsecase(
+          _getIt(),
+        ),
+      )
+      ..registerLazySingleton(
+        () => TopNewsCubit(
+          _getIt(),
         ),
       )
       ..registerLazySingleton(

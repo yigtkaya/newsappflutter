@@ -15,6 +15,7 @@ final class AppColors {
   static Color get kTaksi => const Color(0xFFF5E0A8); // Taksi color
   static Color get kRed100 => const Color(0xFFDA4949); // Red color 100%
   static Color get kSolukYellow => const Color.fromRGBO(255, 191, 67, 1);
+  static Color get kDarkBlue => const Color.fromARGB(255, 76, 133, 227);
 
   //?PRIMARY COLORS
   static Color get kPrimary100 => const Color(0xFFE2725B);

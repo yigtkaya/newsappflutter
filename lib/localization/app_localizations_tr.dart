@@ -150,4 +150,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get december => 'Aralık';
+
+  @override
+  String get recommendedNews => 'Önerilen Haberler';
 }

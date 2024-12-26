@@ -1,8 +1,9 @@
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
 import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
-import 'package:newsappflutter/features/home/cubit/news_cubit.dart';
+import 'package:newsappflutter/features/home/cubit/all_news/news_cubit.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
+import 'package:newsappflutter/features/home/cubit/top_news/top_news_cubit.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';
 
 /// Dependency injection items class.
@@ -21,4 +22,6 @@ final class DepInItems {
   static NewsCubit get newsCubit => DependencyInjection.read<NewsCubit>();
 
   static CarouselCubit get carouselCubit => DependencyInjection.read<CarouselCubit>();
+
+  static TopNewsCubit get topNewsCubit => DependencyInjection.read<TopNewsCubit>();
 }

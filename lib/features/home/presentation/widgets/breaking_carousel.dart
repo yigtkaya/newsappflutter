@@ -6,7 +6,7 @@ final class BreakingArticlesWidget extends BaseWidget<NewsCubit, NewsState> {
   @override
   Widget build(BuildContext context, NewsCubit cubit, NewsState state) {
     return SizedBox(
-      height: 220.h,
+      height: 280.h,
       child: switch (state) {
         NewsSuccess(news: final news) => BlocProvider(
             create: (context) => DepInItems.carouselCubit,
@@ -44,37 +44,64 @@ class _CarouselWidgetState extends State<_CarouselWidget> with _CarouselMixin {
     return BlocBuilder<CarouselCubit, double>(
       bloc: carouselCubit,
       builder: (context, state) {
-        return PageView.builder(
-          controller: pageController,
-          itemCount: widget.articles.length,
-          itemBuilder: (context, index) {
-            final article = widget.articles[index];
-            final scale = calculateScale(state, index);
-            final rotation = calculateRotation(state, index);
-            final swipingLeft = (state - index) > 0; // Calculate here instead
+        return Column(
+          spacing: AppDesignConstants.spacingMedium,
+          children: [
+            SizedBox(
+              height: 250.h,
+              child: PageView.builder(
+                controller: pageController,
+                itemCount: widget.articles.length,
+                itemBuilder: (context, index) {
+                  final article = widget.articles[index];
+                  final scale = calculateScale(state, index);
+                  final rotation = calculateRotation(state, index);
+                  final swipingLeft = (state - index) > 0;
 
-            return TweenAnimationBuilder(
-              duration: const Duration(milliseconds: 350),
-              curve: Curves.easeOutCubic,
-              tween: Tween(begin: scale, end: scale),
-              builder: (context, value, child) {
-                return Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001)
-                    ..rotateY(rotation)
-                    ..scale(value),
-                  alignment: swipingLeft ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
-                    child: BreakingNewsCard(
-                      article: article,
-                      onTap: () => _handleArticleTap(context, article),
+                  return TweenAnimationBuilder(
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeOutCubic,
+                    tween: Tween(begin: scale, end: scale),
+                    builder: (context, value, child) {
+                      return Transform(
+                        transform: Matrix4.identity()
+                          ..setEntry(3, 2, 0.001)
+                          ..rotateY(rotation)
+                          ..scale(value),
+                        alignment: swipingLeft ? Alignment.centerRight : Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 2.w),
+                          child: BreakingNewsCard(
+                            article: article,
+                            onTap: () => _handleArticleTap(context, article),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                widget.articles.length,
+                (index) {
+                  final isActive = index == state.round();
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    margin: EdgeInsets.symmetric(horizontal: 2.w),
+                    height: 8.h,
+                    width: isActive ? 24.w : 8.w,
+                    decoration: BoxDecoration(
+                      color: isActive ? Colors.blue : AppColors.kGrey,
+                      borderRadius: BorderRadius.circular(4),
                     ),
-                  ),
-                );
-              },
-            );
-          },
+                  );
+                },
+              ),
+            ),
+          ],
         );
       },
     );

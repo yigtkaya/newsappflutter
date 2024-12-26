@@ -379,6 +379,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'December'**
   String get december;
+
+  /// No description provided for @recommendedNews.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended News'**
+  String get recommendedNews;
 }
 
 class _AppLocalizationsDelegate

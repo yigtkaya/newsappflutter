@@ -12,23 +12,19 @@ final class BreakingNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          AppDesignConstants.borderRadiusMedium,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(10),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.w),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            AppDesignConstants.borderRadiusMedium,
           ),
-        ],
-      ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Material(
-        color: Colors.transparent,
+        ),
+        clipBehavior: Clip.antiAlias,
         child: InkWell(
+          borderRadius: BorderRadius.circular(
+            AppDesignConstants.borderRadiusMedium,
+          ),
           onTap: onTap,
           child: Stack(
             fit: StackFit.expand,
@@ -58,13 +54,27 @@ final class _BuildImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: article.imageUrl ?? '',
       fit: BoxFit.cover,
+      imageBuilder: (context, imageProvider) => Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
       placeholder: (context, url) => Shimmer.fromColors(
         baseColor: AppColors.kGrey,
         highlightColor: AppColors.kGreyLight1,
-        child: Container(color: AppColors.kWhite),
+        child: Container(
+          color: AppColors.kWhite,
+          height: double.infinity,
+        ),
       ),
-      errorWidget: (context, url, error) => Center(
-        child: Icon(LucideIcons.image_off, color: AppColors.kGrey),
+      errorWidget: (context, url, error) => SizedBox(
+        height: double.infinity,
+        child: Center(
+          child: Icon(LucideIcons.image_off, color: AppColors.kGrey),
+        ),
       ),
     );
   }
@@ -123,10 +133,15 @@ final class _BuildCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppDesignConstants.spacingSmall,
+        vertical: AppDesignConstants.spacingSmall,
+      ),
       decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(20),
+        color: AppColors.kDarkBlue,
+        borderRadius: BorderRadius.circular(
+          AppDesignConstants.borderRadiusLarge,
+        ),
       ),
       child: Text(
         'Sports',
@@ -147,26 +162,35 @@ final class _BuildSourceAndTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          article.source,
-          style: context.textTheme.bodySmall?.copyWith(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        SizedBox(width: 4.w),
-        Icon(
-          LucideIcons.badge_check,
-          color: Colors.blue,
-          size: 16.w,
-        ),
-        SizedBox(width: 8.w),
-        Text(
-          DateTime.parse(article.publishedAt.toIso8601String()).toString(),
-          style: context.textTheme.bodySmall?.copyWith(
-            color: Colors.white,
-          ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: AppDesignConstants.spacingSmall,
+          children: [
+            Text(
+              article.source,
+              style: context.textTheme.bodySmall?.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+            Icon(
+              LucideIcons.badge_check,
+              color: Colors.blue,
+              size: 16.w,
+            ),
+            Text(
+              DateTime.parse(
+                article.publishedAt.toIso8601String(),
+              ).toString(),
+              style: context.textTheme.bodySmall?.copyWith(
+                color: Colors.white,
+              ),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ],
     );
@@ -182,7 +206,7 @@ class _BuildTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       article.title,
-      style: context.textTheme.titleMedium?.copyWith(
+      style: context.textTheme.bodyLarge?.copyWith(
         color: Colors.white,
         fontWeight: FontWeight.w600,
       ),
