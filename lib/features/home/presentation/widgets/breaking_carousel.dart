@@ -73,7 +73,6 @@ class _CarouselWidgetState extends State<_CarouselWidget> with _CarouselMixin {
                           padding: EdgeInsets.symmetric(horizontal: 2.w),
                           child: BreakingNewsCard(
                             article: article,
-                            onTap: () => _handleArticleTap(context, article),
                           ),
                         ),
                       );

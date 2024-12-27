@@ -86,6 +86,52 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [NewsDetailView]
+class NewsDetailRoute extends PageRouteInfo<NewsDetailRouteArgs> {
+  NewsDetailRoute({
+    required Article article,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NewsDetailRoute.name,
+          args: NewsDetailRouteArgs(
+            article: article,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NewsDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NewsDetailRouteArgs>();
+      return NewsDetailView(
+        article: args.article,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class NewsDetailRouteArgs {
+  const NewsDetailRouteArgs({
+    required this.article,
+    this.key,
+  });
+
+  final Article article;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'NewsDetailRouteArgs{article: $article, key: $key}';
+  }
+}
+
+/// generated route for
 /// [OnboardingView]
 class OnboardingRoute extends PageRouteInfo<void> {
   const OnboardingRoute({List<PageRouteInfo>? children})

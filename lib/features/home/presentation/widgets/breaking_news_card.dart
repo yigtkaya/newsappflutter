@@ -3,12 +3,10 @@ part of '../home_view.dart';
 final class BreakingNewsCard extends StatelessWidget {
   const BreakingNewsCard({
     required this.article,
-    required this.onTap,
     super.key,
   });
 
   final Article article;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +20,12 @@ final class BreakingNewsCard extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
+          onTap: () => context.router.push(
+            NewsDetailRoute(article: article),
+          ),
           borderRadius: BorderRadius.circular(
             AppDesignConstants.borderRadiusMedium,
           ),
-          onTap: onTap,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -51,29 +51,32 @@ final class _BuildImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: article.imageUrl ?? '',
-      fit: BoxFit.cover,
-      imageBuilder: (context, imageProvider) => Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: imageProvider,
-            fit: BoxFit.cover,
+    return Hero(
+      tag: 'article_image_${article.uuid}',
+      child: CachedNetworkImage(
+        imageUrl: article.imageUrl ?? '',
+        fit: BoxFit.cover,
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
-      placeholder: (context, url) => Shimmer.fromColors(
-        baseColor: AppColors.kGrey,
-        highlightColor: AppColors.kGreyLight1,
-        child: Container(
-          color: AppColors.kWhite,
-          height: double.infinity,
+        placeholder: (context, url) => Shimmer.fromColors(
+          baseColor: AppColors.kGrey,
+          highlightColor: AppColors.kGreyLight1,
+          child: Container(
+            color: AppColors.kWhite,
+            height: double.infinity,
+          ),
         ),
-      ),
-      errorWidget: (context, url, error) => SizedBox(
-        height: double.infinity,
-        child: Center(
-          child: Icon(LucideIcons.image_off, color: AppColors.kGrey),
+        errorWidget: (context, url, error) => SizedBox(
+          height: double.infinity,
+          child: Center(
+            child: Icon(LucideIcons.image_off, color: AppColors.kGrey),
+          ),
         ),
       ),
     );
