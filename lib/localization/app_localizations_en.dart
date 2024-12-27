@@ -153,4 +153,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recommendedNews => 'Recommended News';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get bookmarks => 'Bookmarks';
 }

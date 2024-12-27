@@ -153,4 +153,10 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get recommendedNews => 'Önerilen Haberler';
+
+  @override
+  String get home => 'Anasayfa';
+
+  @override
+  String get bookmarks => 'Yer İşaretleri';
 }

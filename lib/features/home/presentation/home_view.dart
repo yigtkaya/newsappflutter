@@ -9,7 +9,9 @@ import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
+import 'package:newsappflutter/core/extensions/date_time_extensions.dart';
 import 'package:newsappflutter/core/extensions/language_extension.dart';
+import 'package:newsappflutter/core/extensions/string_extension.dart';
 import 'package:newsappflutter/core/view/base_view.dart';
 import 'package:newsappflutter/core/view/base_widget.dart';
 import 'package:newsappflutter/features/home/cubit/all_news/news_cubit.dart';
@@ -63,7 +65,6 @@ final class HomeView extends BaseView<NewsCubit, NewsState> {
   }
 }
 
-// TODO date time extension, 
 // İki farklı api ile farklı haberleri gösterme 
 // haberlerin detay sayfası
 // haberlerin kaydedilmesi ve kaydedilen haberlerin gösterilmesi.

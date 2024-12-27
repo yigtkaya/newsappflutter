@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappflutter/core/constants/app_colors.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
+import 'package:newsappflutter/core/extensions/language_extension.dart';
 
 final class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -17,9 +19,8 @@ final class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 85,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: AppColors.kWhite,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withAlpha(20),
@@ -33,27 +34,15 @@ final class CustomBottomNavBar extends StatelessWidget {
         children: [
           _NavBarItem(
             icon: LucideIcons.house,
-            label: 'Home',
+            label: context.l10n.home,
             isSelected: currentIndex == 0,
             onTap: () => onTap(0),
           ),
           _NavBarItem(
-            icon: LucideIcons.compass,
-            label: 'Discover',
+            icon: LucideIcons.bookmark,
+            label: context.l10n.bookmarks,
             isSelected: currentIndex == 1,
             onTap: () => onTap(1),
-          ),
-          _NavBarItem(
-            icon: LucideIcons.bookmark,
-            label: 'Bookmarks',
-            isSelected: currentIndex == 2,
-            onTap: () => onTap(2),
-          ),
-          _NavBarItem(
-            icon: LucideIcons.user_round,
-            label: 'Profile',
-            isSelected: currentIndex == 3,
-            onTap: () => onTap(3),
           ),
         ],
       ),
@@ -61,7 +50,7 @@ final class CustomBottomNavBar extends StatelessWidget {
   }
 }
 
-class _NavBarItem extends StatelessWidget {
+final class _NavBarItem extends StatelessWidget {
   const _NavBarItem({
     required this.icon,
     required this.label,
@@ -79,9 +68,12 @@ class _NavBarItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: SizedBox(
-        height: 85,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppDesignConstants.spacingSmall,
+        ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedContainer(
@@ -102,7 +94,7 @@ class _NavBarItem extends StatelessWidget {
                   Icon(
                     icon,
                     color: isSelected ? AppColors.kWhite : AppColors.kGrey,
-                    size: 24,
+                    size: 24.r,
                   ),
                   AnimatedSize(
                     duration: const Duration(milliseconds: 200),

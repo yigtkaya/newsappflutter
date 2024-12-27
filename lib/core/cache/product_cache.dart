@@ -25,4 +25,5 @@ final class ProductCache {
   /// User cache operation.
   late final userCacheOperation = HiveCacheOperation<UserEntity>();
   late final newsCacheOperation = HiveCacheOperation<NewsEntity>();
+  late final topNewsCacheOperation = HiveCacheOperation<NewsEntity>();
 }

@@ -18,8 +18,13 @@ final class RecommendedNewsCard extends StatelessWidget {
         AppDesignConstants.borderRadiusMedium,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppDesignConstants.spacingMedium),
+        padding: const EdgeInsets.only(
+          left: AppDesignConstants.spacingMedium,
+          right: AppDesignConstants.spacingMedium,
+          bottom: AppDesignConstants.spacingMedium,
+        ),
         child: Row(
+          spacing: AppDesignConstants.spacingMedium,
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(
@@ -42,31 +47,18 @@ final class RecommendedNewsCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 12.w),
             Expanded(
               child: Column(
+                spacing: AppDesignConstants.spacingSmall,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppDesignConstants.spacingSmall,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.kDarkBlue,
-                      borderRadius: BorderRadius.circular(
-                        AppDesignConstants.borderRadiusLarge,
-                      ),
-                    ),
-                    child: Text(
-                      'Sports',
-                      style: context.textTheme.bodySmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  Text(
+                    article.categories.first.capitalizeFirstLetter(),
+                    style: context.textTheme.bodySmall?.copyWith(
+                      color: AppColors.kGrey,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 8.h),
                   Text(
                     article.title,
                     style: context.textTheme.bodyMedium?.copyWith(
@@ -75,8 +67,8 @@ final class RecommendedNewsCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 8.h),
                   Row(
+                    spacing: 4.w,
                     children: [
                       Text(
                         article.source,
@@ -84,11 +76,16 @@ final class RecommendedNewsCard extends StatelessWidget {
                           color: AppColors.kGrey,
                         ),
                       ),
-                      SizedBox(width: 4.w),
                       Icon(
                         LucideIcons.badge_check,
-                        color: Colors.blue,
+                        color: AppColors.kDarkBlue,
                         size: 16.w,
+                      ),
+                      Text(
+                        article.publishedAt.formattedDateTime(),
+                        style: context.textTheme.bodySmall?.copyWith(
+                          color: AppColors.kGrey,
+                        ),
                       ),
                     ],
                   ),

@@ -178,13 +178,13 @@ final class _BuildSourceAndTime extends StatelessWidget {
             ),
             Icon(
               LucideIcons.badge_check,
-              color: Colors.blue,
+              color: AppColors.kDarkBlue,
               size: 16.w,
             ),
             Text(
               DateTime.parse(
                 article.publishedAt.toIso8601String(),
-              ).toString(),
+              ).formatForTripItem(),
               style: context.textTheme.bodySmall?.copyWith(
                 color: Colors.white,
               ),
@@ -197,7 +197,7 @@ final class _BuildSourceAndTime extends StatelessWidget {
   }
 }
 
-class _BuildTitle extends StatelessWidget {
+final class _BuildTitle extends StatelessWidget {
   const _BuildTitle({required this.article});
 
   final Article article;

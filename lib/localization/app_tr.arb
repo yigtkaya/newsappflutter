@@ -46,5 +46,7 @@
   "october": "Ekim",
   "november": "Kasım",
   "december": "Aralık",
-  "recommendedNews": "Önerilen Haberler"
+  "recommendedNews": "Önerilen Haberler",
+  "home": "Anasayfa",
+  "bookmarks": "Yer İşaretleri"
 }

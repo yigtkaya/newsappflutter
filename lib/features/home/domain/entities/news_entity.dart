@@ -4,11 +4,16 @@ import 'package:newsappflutter/features/home/data/models/response/article_model.
 final class NewsEntity with CacheModel {
   NewsEntity({
     required this.articles,
+    required this.id,
   });
 
-  NewsEntity.empty() : articles = [];
+  NewsEntity.empty()
+      : articles = [],
+        id = 'default_cache_key';
 
   final List<Article> articles;
+  @override
+  final String id;
 
   @override
   Map<String, dynamic> toJson() {
@@ -36,12 +41,11 @@ final class NewsEntity with CacheModel {
 
   NewsEntity copyWith({
     List<Article>? articles,
+    String? id,
   }) {
     return NewsEntity(
       articles: articles ?? this.articles,
+      id: id ?? this.id,
     );
   }
-
-  @override
-  String get id => 'news_cache_key';
 }

@@ -36,7 +36,12 @@ final class NewsCubit extends BaseCubit<NewsState> {
     result.fold(
       (failure) => safeEmit(NewsFailure(failure: failure)),
       (news) {
-        cacheNews(NewsEntity(articles: news.data));
+        cacheNews(
+          NewsEntity(
+            articles: news.data,
+            id: 'news_cache_key',
+          ),
+        );
         safeEmit(NewsSuccess(news: news));
       },
     );

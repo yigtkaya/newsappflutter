@@ -32,7 +32,12 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
     result.fold(
       (failure) => safeEmit(TopNewsFailure(failure: failure)),
       (news) {
-        cacheNews(NewsEntity(articles: news.data));
+        cacheNews(
+          NewsEntity(
+            articles: news.data,
+            id: 'top_news_cache_key',
+          ),
+        );
         safeEmit(TopNewsSuccess(news: news));
       },
     );
@@ -55,11 +60,11 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
   // }
 
   Future<void> cacheNews(NewsEntity news) async {
-    DepInItems.productCache.newsCacheOperation.add(news);
+    DepInItems.productCache.topNewsCacheOperation.add(news);
   }
 
   Future<void> loadCachedNews() async {
-    final cachedNews = DepInItems.productCache.newsCacheOperation.get(
+    final cachedNews = DepInItems.productCache.topNewsCacheOperation.get(
       'top_news_cache_key',
     );
     if (cachedNews != null) {
@@ -79,7 +84,7 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
       return;
     }
 
-    // call getAllNews if no cached news
+    // call getTopNews if no cached news
     await getTopNews(
       locale: 'tr',
       limit: 3,

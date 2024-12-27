@@ -1,48 +1,30 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappflutter/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:newsappflutter/features/home/presentation/home_view.dart';
+import 'package:newsappflutter/features/root/bottom_navigation_cubit.dart';
+
+part 'root_view_mixin.dart';
 
 @RoutePage()
-class RootView extends StatefulWidget {
+final class RootView extends StatefulWidget {
   const RootView({super.key});
 
   @override
   State<RootView> createState() => _RootViewState();
 }
 
-class _RootViewState extends State<RootView> {
-  int _currentIndex = 0;
-  final _pageController = PageController();
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onIndexChanged(int index) {
-    setState(() {
-      _currentIndex = index;
-      _pageController.animateToPage(
-        index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    });
-  }
-
+class _RootViewState extends State<RootView> with RootViewMixin {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
-      currentIndex: _currentIndex,
+      currentIndex: context.watch<BottomNavigationCubit>().state,
       onIndexChanged: _onIndexChanged,
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          HomeView(),
-          HomeView(),
           HomeView(),
           HomeView(),
         ],
@@ -51,7 +33,7 @@ class _RootViewState extends State<RootView> {
   }
 }
 
-class BaseScaffold extends StatefulWidget {
+final class BaseScaffold extends StatelessWidget {
   const BaseScaffold({
     required this.body,
     this.appBar,
@@ -66,18 +48,13 @@ class BaseScaffold extends StatefulWidget {
   final void Function(int)? onIndexChanged;
 
   @override
-  State<BaseScaffold> createState() => _BaseScaffoldState();
-}
-
-class _BaseScaffoldState extends State<BaseScaffold> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: widget.appBar,
-      body: widget.body,
+      appBar: appBar,
+      body: body,
       bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: widget.currentIndex,
-        onTap: widget.onIndexChanged ?? (_) {},
+        currentIndex: currentIndex,
+        onTap: onIndexChanged ?? (_) {},
       ),
     );
   }
