@@ -10,6 +10,25 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [BookmarksView]
+class BookmarksRoute extends PageRouteInfo<void> {
+  const BookmarksRoute({List<PageRouteInfo>? children})
+      : super(
+          BookmarksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookmarksRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BookmarksView();
+    },
+  );
+}
+
+/// generated route for
 /// [ForgotPasswordView]
 class ForgotPasswordRoute extends PageRouteInfo<void> {
   const ForgotPasswordRoute({List<PageRouteInfo>? children})

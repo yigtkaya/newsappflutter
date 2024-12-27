@@ -1,6 +1,7 @@
 import 'package:newsappflutter/core/cache/core/cache_manager.dart';
 import 'package:newsappflutter/core/cache/hive/hive_operation.dart';
 import 'package:newsappflutter/features/auth/domain/entities/user_entity.dart';
+import 'package:newsappflutter/features/bookmarks/domain/entities/bookmarked_news_entity.dart';
 import 'package:newsappflutter/features/home/domain/entities/news_entity.dart';
 
 /// ProductCache is a class that manages the cache for the app.
@@ -18,6 +19,7 @@ final class ProductCache {
       cacheModels: [
         UserEntity.empty(),
         NewsEntity.empty(),
+        BookmarkedNewsEntity.empty(),
       ],
     );
   }
@@ -26,4 +28,5 @@ final class ProductCache {
   late final userCacheOperation = HiveCacheOperation<UserEntity>();
   late final newsCacheOperation = HiveCacheOperation<NewsEntity>();
   late final topNewsCacheOperation = HiveCacheOperation<NewsEntity>();
+  late final bookmarkedNewsCacheOperation = HiveCacheOperation<BookmarkedNewsEntity>();
 }

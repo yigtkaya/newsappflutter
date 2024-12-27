@@ -12,16 +12,16 @@ final class RecommendedNewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(
-        AppDesignConstants.borderRadiusMedium,
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: AppDesignConstants.spacingMedium,
+        right: AppDesignConstants.spacingMedium,
+        bottom: AppDesignConstants.spacingMedium,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: AppDesignConstants.spacingMedium,
-          right: AppDesignConstants.spacingMedium,
-          bottom: AppDesignConstants.spacingMedium,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(
+          AppDesignConstants.borderRadiusMedium,
         ),
         child: Row(
           spacing: AppDesignConstants.spacingMedium,

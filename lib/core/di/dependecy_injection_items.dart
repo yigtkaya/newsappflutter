@@ -1,6 +1,7 @@
 import 'package:newsappflutter/core/cache/product_cache.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
+import 'package:newsappflutter/features/bookmarks/cubit/bookmarks_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/all_news/news_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/top_news/top_news_cubit.dart';
@@ -27,4 +28,6 @@ final class DepInItems {
   static TopNewsCubit get topNewsCubit => DependencyInjection.read<TopNewsCubit>();
 
   static BottomNavigationCubit get bottomNavigationCubit => DependencyInjection.read<BottomNavigationCubit>();
+
+  static BookmarksCubit get bookmarksCubit => DependencyInjection.read<BookmarksCubit>();
 }

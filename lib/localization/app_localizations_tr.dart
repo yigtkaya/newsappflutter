@@ -159,4 +159,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get bookmarks => 'Yer İşaretleri';
+
+  @override
+  String get noBookmarks => 'Henüz yer işareti yok';
 }

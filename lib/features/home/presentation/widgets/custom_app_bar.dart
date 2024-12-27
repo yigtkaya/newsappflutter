@@ -1,6 +1,6 @@
 part of '../home_view.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+final class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
 
   @override

@@ -10,8 +10,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappflutter/core/constants/app_constants.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
-import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
+import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/environment/app_environment.dart';
 import 'package:newsappflutter/core/environment/envied.dart';
 import 'package:newsappflutter/core/observers/custom_route_observer.dart';
@@ -23,9 +23,9 @@ import 'package:newsappflutter/features/root/bottom_navigation_cubit.dart';
 import 'package:newsappflutter/localization/app_localizations.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';
 
-part 'features/app/setup.dart';
-part 'features/app/initializer.dart';
 part 'features/app/app.dart';
+part 'features/app/initializer.dart';
+part 'features/app/setup.dart';
 
 void main() {
   setup(

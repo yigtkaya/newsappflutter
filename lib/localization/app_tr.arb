@@ -48,5 +48,6 @@
   "december": "Aralık",
   "recommendedNews": "Önerilen Haberler",
   "home": "Anasayfa",
-  "bookmarks": "Yer İşaretleri"
+  "bookmarks": "Yer İşaretleri",
+  "noBookmarks": "Henüz yer işareti yok"
 }

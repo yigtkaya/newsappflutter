@@ -6,8 +6,8 @@ import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappflutter/core/constants/app_colors.dart';
 import 'package:newsappflutter/core/constants/app_design_constant.dart';
-import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
+import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
 import 'package:newsappflutter/core/extensions/date_time_extensions.dart';
 import 'package:newsappflutter/core/extensions/language_extension.dart';
@@ -47,12 +47,10 @@ final class HomeView extends BaseView<NewsCubit, NewsState> {
           children: [
             SectionHeader(
               title: context.l10n.breakingNews,
-              actionText: context.l10n.seeAll,
             ),
             const BreakingArticlesWidget(),
             SectionHeader(
               title: context.l10n.recommendedNews,
-              actionText: context.l10n.seeAll,
             ),
             BlocProvider<TopNewsCubit>(
               create: (context) => DepInItems.topNewsCubit,
@@ -65,6 +63,6 @@ final class HomeView extends BaseView<NewsCubit, NewsState> {
   }
 }
 
-// İki farklı api ile farklı haberleri gösterme 
+// İki farklı api ile farklı haberleri gösterme
 // haberlerin detay sayfası
 // haberlerin kaydedilmesi ve kaydedilen haberlerin gösterilmesi.

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappflutter/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:newsappflutter/features/bookmarks/presentation/bookmarks_view.dart';
 import 'package:newsappflutter/features/home/presentation/home_view.dart';
 import 'package:newsappflutter/features/root/bottom_navigation_cubit.dart';
 
@@ -26,7 +27,7 @@ class _RootViewState extends State<RootView> with RootViewMixin {
         physics: const NeverScrollableScrollPhysics(),
         children: const [
           HomeView(),
-          HomeView(),
+          BookmarksView(),
         ],
       ),
     );

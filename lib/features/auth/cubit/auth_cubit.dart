@@ -1,5 +1,5 @@
 import 'package:newsappflutter/core/cubit/base_cubit.dart';
-import 'package:newsappflutter/core/di/deoendecy_injection_items.dart';
+import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/network/failure.dart';
 import 'package:newsappflutter/features/auth/data/models/user_model.dart';
 import 'package:newsappflutter/features/auth/domain/entities/user_entity.dart';

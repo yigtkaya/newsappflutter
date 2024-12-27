@@ -97,18 +97,19 @@ final class _NavBarItem extends StatelessWidget {
                     size: 24.r,
                   ),
                   AnimatedSize(
-                    duration: const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 300),
                     child: SizedBox(
-                      width: isSelected ? 8 : 0,
+                      width: isSelected ? 10.w : 0,
                     ),
                   ),
                   AnimatedSize(
-                    duration: const Duration(milliseconds: 250),
+                    duration: const Duration(milliseconds: 350),
                     child: isSelected
                         ? Text(
                             label,
-                            style: context.textTheme.bodyLarge!.copyWith(
+                            style: context.textTheme.bodyMedium!.copyWith(
                               color: AppColors.kWhite,
+                              fontWeight: FontWeight.w600,
                             ),
                           )
                         : const SizedBox.shrink(),

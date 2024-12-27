@@ -397,6 +397,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Bookmarks'**
   String get bookmarks;
+
+  /// No description provided for @noBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'No bookmarks yet'**
+  String get noBookmarks;
 }
 
 class _AppLocalizationsDelegate

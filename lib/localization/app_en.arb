@@ -48,5 +48,6 @@
   "december": "December",
   "recommendedNews": "Recommended News",
   "home": "Home",
-  "bookmarks": "Bookmarks"
+  "bookmarks": "Bookmarks",
+  "noBookmarks": "No bookmarks yet"
 }

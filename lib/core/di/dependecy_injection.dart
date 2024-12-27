@@ -12,6 +12,13 @@ import 'package:newsappflutter/features/auth/domain/usecases/listen_auth_state_u
 import 'package:newsappflutter/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_out_usecase.dart';
 import 'package:newsappflutter/features/auth/domain/usecases/sign_up_usecase.dart';
+import 'package:newsappflutter/features/bookmarks/cubit/bookmarks_cubit.dart';
+import 'package:newsappflutter/features/bookmarks/data/bookmark_repository_impl.dart';
+import 'package:newsappflutter/features/bookmarks/domain/repositories/bookmarks_repository.dart';
+import 'package:newsappflutter/features/bookmarks/domain/usecases/add_bookmark_usecase.dart';
+import 'package:newsappflutter/features/bookmarks/domain/usecases/clear_bookmarks_usecase.dart';
+import 'package:newsappflutter/features/bookmarks/domain/usecases/get_bookmarked_news_usecase.dart';
+import 'package:newsappflutter/features/bookmarks/domain/usecases/remove_bookmark_usecase.dart';
 import 'package:newsappflutter/features/home/cubit/all_news/news_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/carousel_cubit.dart';
 import 'package:newsappflutter/features/home/cubit/top_news/top_news_cubit.dart';
@@ -41,7 +48,27 @@ final class DependencyInjection {
     authSetup();
     languageSetup();
     networkSetup();
+    bookmarksSetup();
     newsSetup();
+  }
+
+  static void bookmarksSetup() {
+    _getIt
+      ..registerLazySingleton<BookmarksRepository>(
+        BookmarksRepositoryImpl.new,
+      )
+      ..registerLazySingleton(() => GetBookmarkedNewsUsecase(_getIt()))
+      ..registerLazySingleton(() => ClearBookmarksUsecase(_getIt()))
+      ..registerLazySingleton(() => RemoveBookmarkUsecase(_getIt()))
+      ..registerLazySingleton(() => AddBookmarkUsecase(_getIt()))
+      ..registerLazySingleton(
+        () => BookmarksCubit(
+          _getIt(),
+          _getIt(),
+          _getIt(),
+          _getIt(),
+        ),
+      );
   }
 
   static void navigationSetup() {

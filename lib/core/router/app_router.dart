@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:newsappflutter/features/home/presentation/home_view.dart';
 import 'package:newsappflutter/features/auth/presentation/forgot_password_view.dart';
 import 'package:newsappflutter/features/auth/presentation/login_view.dart';
 import 'package:newsappflutter/features/auth/presentation/sign_up_view.dart';
+import 'package:newsappflutter/features/bookmarks/presentation/bookmarks_view.dart';
+import 'package:newsappflutter/features/home/presentation/home_view.dart';
 import 'package:newsappflutter/features/onboarding/onboarding_view.dart';
 import 'package:newsappflutter/features/root/root_view.dart';
 import 'package:newsappflutter/features/splash/splash_view.dart';
@@ -50,9 +51,7 @@ class AppRouter extends RootStackRouter {
           transitionsBuilder: TransitionsBuilders.fadeIn,
           children: [
             AutoRoute(page: HomeRoute.page),
-            AutoRoute(page: HomeRoute.page),
-            AutoRoute(page: HomeRoute.page),
-            AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: BookmarksRoute.page),
           ],
         ),
       ];
