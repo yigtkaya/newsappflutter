@@ -49,5 +49,6 @@
   "recommendedNews": "Önerilen Haberler",
   "home": "Anasayfa",
   "bookmarks": "Yer İşaretleri",
-  "noBookmarks": "Henüz yer işareti yok"
+  "noBookmarks": "Henüz yer işareti yok",
+  "clearAll": "Temizle"
 }

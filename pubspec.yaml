@@ -88,6 +88,8 @@ dependencies:
   either_dart: ^1.0.0
   flutter_svg: ^2.0.16
   fluttertoast: ^8.2.10
+  modal_bottom_sheet: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

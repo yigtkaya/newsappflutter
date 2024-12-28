@@ -162,4 +162,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noBookmarks => 'Henüz yer işareti yok';
+
+  @override
+  String get clearAll => 'Temizle';
 }

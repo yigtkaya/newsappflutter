@@ -162,4 +162,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noBookmarks => 'No bookmarks yet';
+
+  @override
+  String get clearAll => 'Clear All';
 }

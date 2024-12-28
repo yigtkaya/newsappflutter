@@ -29,5 +29,6 @@ final class DepInItems {
 
   static BottomNavigationCubit get bottomNavigationCubit => DependencyInjection.read<BottomNavigationCubit>();
 
+  /// Get the bookmarks cubit
   static BookmarksCubit get bookmarksCubit => DependencyInjection.read<BookmarksCubit>();
 }

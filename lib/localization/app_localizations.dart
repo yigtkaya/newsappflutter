@@ -403,6 +403,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No bookmarks yet'**
   String get noBookmarks;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All'**
+  String get clearAll;
 }
 
 class _AppLocalizationsDelegate

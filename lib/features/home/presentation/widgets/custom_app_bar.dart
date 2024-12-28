@@ -8,6 +8,17 @@ final class CustomAppBar extends StatelessWidget implements PreferredSizeWidget 
     return AppBar(
       backgroundColor: AppColors.kWhite,
       surfaceTintColor: AppColors.kWhite,
+      leading: IconButton(
+        onPressed: () {
+          showBarModalBottomSheet<Widget>(
+            context: context,
+            builder: (context) {
+              return const LanguagePickerBottomSheet();
+            },
+          );
+        },
+        icon: const Icon(LucideIcons.globe),
+      ),
       actions: [
         Padding(
           padding: const EdgeInsets.only(

@@ -49,5 +49,6 @@
   "recommendedNews": "Recommended News",
   "home": "Home",
   "bookmarks": "Bookmarks",
-  "noBookmarks": "No bookmarks yet"
+  "noBookmarks": "No bookmarks yet",
+  "clearAll": "Clear All"
 }

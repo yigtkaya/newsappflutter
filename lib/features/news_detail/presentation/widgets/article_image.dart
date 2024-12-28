@@ -78,7 +78,7 @@ final class ArticleImage extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      article.categories.first.capitalizeFirstLetter(),
+                      article.categories.isEmpty ? '' : article.categories.first.capitalizeFirstLetter(),
                       style: context.textTheme.bodySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,

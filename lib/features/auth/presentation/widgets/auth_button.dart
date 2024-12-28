@@ -37,7 +37,7 @@ final class AuthButton extends StatelessWidget {
           Navigator.pop(context);
 
           context.router.replace(
-            const HomeRoute(),
+            const RootRoute(),
           );
         }
 

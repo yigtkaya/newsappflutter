@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lucide/flutter_lucide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappflutter/core/constants/app_colors.dart';
@@ -26,7 +25,7 @@ part 'widgets/article_detail_content.dart';
 final class NewsDetailView extends BaseView<BookmarksCubit, BookmarksState> {
   const NewsDetailView({required this.article, super.key})
       : super(
-          cubit: DependencyInjection.read<BookmarksCubit>,
+          value: DependencyInjection.read<BookmarksCubit>,
         );
 
   final Article article;

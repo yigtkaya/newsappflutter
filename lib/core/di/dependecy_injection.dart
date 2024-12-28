@@ -48,8 +48,8 @@ final class DependencyInjection {
     authSetup();
     languageSetup();
     networkSetup();
-    bookmarksSetup();
     newsSetup();
+    bookmarksSetup();
   }
 
   static void bookmarksSetup() {

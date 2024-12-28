@@ -27,16 +27,14 @@ final class RecommendedNewsListView extends BaseWidget<TopNewsCubit, TopNewsStat
         );
       }
 
-      return SizedBox(
-        height: 400,
-        child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: news.length,
-          itemBuilder: (context, index) {
-            final article = news[index];
-            return RecommendedNewsCard(article: article, onTap: () {});
-          },
-        ),
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: news.length,
+        itemBuilder: (context, index) {
+          final article = news[index];
+          return RecommendedNewsCard(article: article);
+        },
       );
     }
 

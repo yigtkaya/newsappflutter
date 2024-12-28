@@ -18,10 +18,6 @@ mixin _CarouselMixin on State<_CarouselWidget> {
     );
   }
 
-  void _handleArticleTap(BuildContext context, Article article) {
-    // TODO: Navigate to article detail
-  }
-
   @override
   void dispose() {
     pageController

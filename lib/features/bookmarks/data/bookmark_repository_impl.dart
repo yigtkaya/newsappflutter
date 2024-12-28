@@ -33,6 +33,11 @@ class BookmarksRepositoryImpl implements BookmarksRepository {
           ) ??
           BookmarkedNewsEntity.empty();
 
+      // Check if article already exists
+      if (cachedNews.articles.any((a) => a.uuid == article.uuid)) {
+        return const Right(null); // Already bookmarked
+      }
+
       final updatedArticles = [...cachedNews.articles, article];
 
       DepInItems.productCache.bookmarkedNewsCacheOperation.add(

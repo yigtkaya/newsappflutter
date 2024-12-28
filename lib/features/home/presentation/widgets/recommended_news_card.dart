@@ -3,12 +3,10 @@ part of '../home_view.dart';
 final class RecommendedNewsCard extends StatelessWidget {
   const RecommendedNewsCard({
     required this.article,
-    required this.onTap,
     super.key,
   });
 
   final Article article;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,9 @@ final class RecommendedNewsCard extends StatelessWidget {
         bottom: AppDesignConstants.spacingMedium,
       ),
       child: InkWell(
-        onTap: onTap,
+        onTap: () => context.router.push(
+          NewsDetailRoute(article: article),
+        ),
         borderRadius: BorderRadius.circular(
           AppDesignConstants.borderRadiusMedium,
         ),
@@ -70,10 +70,12 @@ final class RecommendedNewsCard extends StatelessWidget {
                   Row(
                     spacing: 4.w,
                     children: [
-                      Text(
-                        article.source,
-                        style: context.textTheme.bodySmall?.copyWith(
-                          color: AppColors.kGrey,
+                      Flexible(
+                        child: Text(
+                          article.source,
+                          style: context.textTheme.bodySmall?.copyWith(
+                            color: AppColors.kGrey,
+                          ),
                         ),
                       ),
                       Icon(
@@ -83,6 +85,7 @@ final class RecommendedNewsCard extends StatelessWidget {
                       ),
                       Text(
                         article.publishedAt.formattedDateTime(),
+                        overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColors.kGrey,
                         ),

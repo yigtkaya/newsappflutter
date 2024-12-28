@@ -19,6 +19,7 @@ import 'package:newsappflutter/core/router/app_router.dart';
 import 'package:newsappflutter/core/theme/app_theme.dart';
 import 'package:newsappflutter/features/app/firebase_options.dart';
 import 'package:newsappflutter/features/auth/cubit/auth_cubit.dart';
+import 'package:newsappflutter/features/bookmarks/cubit/bookmarks_cubit.dart';
 import 'package:newsappflutter/features/root/bottom_navigation_cubit.dart';
 import 'package:newsappflutter/localization/app_localizations.dart';
 import 'package:newsappflutter/localization/cubit/language_cubit.dart';

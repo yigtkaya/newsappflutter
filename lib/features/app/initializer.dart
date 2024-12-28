@@ -17,6 +17,9 @@ final class _Initializer extends StatelessWidget {
         BlocProvider<BottomNavigationCubit>(
           create: (context) => DepInItems.bottomNavigationCubit,
         ),
+        BlocProvider<BookmarksCubit>(
+          create: (context) => DepInItems.bookmarksCubit,
+        ),
       ],
       child: child,
     );

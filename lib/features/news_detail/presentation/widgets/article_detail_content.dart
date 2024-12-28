@@ -57,25 +57,26 @@ class _ArticleDetailContentState extends State<ArticleDetailContent> {
                         Row(
                           children: [
                             // Category chip
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppDesignConstants.spacingMedium,
-                                vertical: AppDesignConstants.spacingSmall,
-                              ),
-                              decoration: BoxDecoration(
-                                color: AppColors.kDarkBlue.withAlpha(10),
-                                borderRadius: BorderRadius.circular(
-                                  AppDesignConstants.borderRadiusMedium,
+                            if (widget.article.categories.isNotEmpty)
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: AppDesignConstants.spacingMedium,
+                                  vertical: AppDesignConstants.spacingSmall,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: AppColors.kDarkBlue.withAlpha(10),
+                                  borderRadius: BorderRadius.circular(
+                                    AppDesignConstants.borderRadiusMedium,
+                                  ),
+                                ),
+                                child: Text(
+                                  widget.article.categories.first.capitalizeFirstLetter(),
+                                  style: context.textTheme.bodySmall?.copyWith(
+                                    color: AppColors.kDarkBlue,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                              child: Text(
-                                widget.article.categories.first.capitalizeFirstLetter(),
-                                style: context.textTheme.bodySmall?.copyWith(
-                                  color: AppColors.kDarkBlue,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
                             const Spacer(),
                             // Time ago
                             Text(

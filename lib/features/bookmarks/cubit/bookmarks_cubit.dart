@@ -36,30 +36,57 @@ final class BookmarksCubit extends BaseCubit<BookmarksState> {
   }
 
   Future<void> bookmarkNews(Article article) async {
-    final result = await _bookmarkNewsUsecase.call(article);
-    unawaited(
-      result.fold(
-        (failure) => safeEmit(BookmarksFailure(failure: failure)),
-        (_) => getBookmarkedNews(),
-      ),
-    );
+    try {
+      final result = await _bookmarkNewsUsecase.call(article);
+      unawaited(
+        result.fold(
+          (failure) {
+            safeEmit(BookmarksFailure(failure: failure));
+            // Add error handling/showing here
+          },
+          (_) => getBookmarkedNews(),
+        ),
+      );
+    } catch (e) {
+      safeEmit(BookmarksFailure(
+        failure: Failure(message: 'Failed to bookmark news', code: '500'),
+      ));
+    }
   }
 
   Future<void> removeFromBookmarks(String articleId) async {
-    final result = await _removeFromBookmarksUsecase.call(articleId);
-    unawaited(
-      result.fold(
-        (failure) => safeEmit(BookmarksFailure(failure: failure)),
-        (_) => getBookmarkedNews(),
-      ),
-    );
+    try {
+      final result = await _removeFromBookmarksUsecase.call(articleId);
+      unawaited(
+        result.fold(
+          (failure) {
+            safeEmit(BookmarksFailure(failure: failure));
+            // Add error handling/showing here
+          },
+          (_) => getBookmarkedNews(),
+        ),
+      );
+    } catch (e) {
+      safeEmit(BookmarksFailure(
+        failure: Failure(message: 'Failed to remove bookmark', code: '500'),
+      ));
+    }
   }
 
   Future<void> clearBookmarks() async {
-    final result = await _clearBookmarksUsecase.call();
-    result.fold(
-      (failure) => safeEmit(BookmarksFailure(failure: failure)),
-      (_) => getBookmarkedNews(),
-    );
+    try {
+      final result = await _clearBookmarksUsecase.call();
+      result.fold(
+        (failure) {
+          safeEmit(BookmarksFailure(failure: failure));
+          // Add error handling/showing here
+        },
+        (_) => getBookmarkedNews(),
+      );
+    } catch (e) {
+      safeEmit(BookmarksFailure(
+        failure: Failure(message: 'Failed to clear bookmarks', code: '500'),
+      ));
+    }
   }
 }

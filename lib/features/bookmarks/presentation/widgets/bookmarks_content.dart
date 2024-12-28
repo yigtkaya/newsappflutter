@@ -9,6 +9,23 @@ final class BookmarksContent extends BaseWidget<BookmarksCubit, BookmarksState> 
     BookmarksCubit cubit,
     BookmarksState state,
   ) {
+    return BlocListener<BookmarksCubit, BookmarksState>(
+      listener: (context, state) {
+        if (state is BookmarksFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.failure.message)),
+          );
+        }
+      },
+      child: _buildContent(context, cubit, state),
+    );
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    BookmarksCubit cubit,
+    BookmarksState state,
+  ) {
     if (state is BookmarksLoading || state is BookmarksInitial) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -39,7 +56,9 @@ final class BookmarksContent extends BaseWidget<BookmarksCubit, BookmarksState> 
       }
 
       return ListView.builder(
-        padding: const EdgeInsets.all(AppDesignConstants.spacingMedium),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppDesignConstants.spacingSmall,
+        ),
         itemCount: state.bookmarkedNews.length,
         itemBuilder: (context, index) {
           final article = state.bookmarkedNews[index];
@@ -47,6 +66,15 @@ final class BookmarksContent extends BaseWidget<BookmarksCubit, BookmarksState> 
             key: Key(article.uuid),
             onDismissed: (_) {
               cubit.removeFromBookmarks(article.uuid);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Article removed from bookmarks'),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () => cubit.bookmarkNews(article),
+                  ),
+                ),
+              );
             },
             background: Container(
               color: Colors.red,
@@ -56,7 +84,6 @@ final class BookmarksContent extends BaseWidget<BookmarksCubit, BookmarksState> 
             ),
             child: RecommendedNewsCard(
               article: article,
-              onTap: () {},
             ),
           );
         },
