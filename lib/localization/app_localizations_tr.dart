@@ -165,4 +165,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get clearAll => 'Temizle';
+
+  @override
+  String get general => 'Genel';
 }

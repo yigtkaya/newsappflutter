@@ -9,17 +9,29 @@ final class GetAllNewsUsecase {
   final NewsRepository _newsRepository;
 
   Future<Either<Failure, NewsResponse>> call({
-    String? locale,
-    int? limit,
-    String? categories,
-    String? search,
+    String? q,
+    List<String>? searchIn,
+    List<String>? sources,
+    List<String>? domains,
+    List<String>? excludeDomains,
+    DateTime? from,
+    DateTime? to,
+    String? language,
+    String? sortBy,
+    int? pageSize,
     int? page,
   }) async {
-    return _newsRepository.getAllNews(
-      locale: locale,
-      limit: limit,
-      categories: categories,
-      search: search,
+    return _newsRepository.getEverything(
+      q: q,
+      searchIn: searchIn,
+      sources: sources,
+      domains: domains,
+      excludeDomains: excludeDomains,
+      from: from,
+      to: to,
+      language: language,
+      sortBy: sortBy,
+      pageSize: pageSize,
       page: page,
     );
   }

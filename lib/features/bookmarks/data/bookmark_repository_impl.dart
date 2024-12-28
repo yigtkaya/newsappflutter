@@ -34,7 +34,7 @@ class BookmarksRepositoryImpl implements BookmarksRepository {
           BookmarkedNewsEntity.empty();
 
       // Check if article already exists
-      if (cachedNews.articles.any((a) => a.uuid == article.uuid)) {
+      if (cachedNews.articles.any((a) => a.title == article.title)) {
         return const Right(null); // Already bookmarked
       }
 
@@ -67,7 +67,7 @@ class BookmarksRepositoryImpl implements BookmarksRepository {
 
       final updatedArticles = cachedNews.articles
           .where(
-            (article) => article.uuid != articleId,
+            (article) => article.title != articleId,
           )
           .toList();
 

@@ -63,9 +63,9 @@ final class BookmarksContent extends BaseWidget<BookmarksCubit, BookmarksState> 
         itemBuilder: (context, index) {
           final article = state.bookmarkedNews[index];
           return Dismissible(
-            key: Key(article.uuid),
+            key: Key(article.title.toString()),
             onDismissed: (_) {
-              cubit.removeFromBookmarks(article.uuid);
+              cubit.removeFromBookmarks(article.title.toString());
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: const Text('Article removed from bookmarks'),

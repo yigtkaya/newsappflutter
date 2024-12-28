@@ -12,7 +12,6 @@ import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
 import 'package:newsappflutter/core/extensions/date_time_extensions.dart';
 import 'package:newsappflutter/core/extensions/language_extension.dart';
-import 'package:newsappflutter/core/extensions/string_extension.dart';
 import 'package:newsappflutter/core/router/app_router.dart';
 import 'package:newsappflutter/core/view/base_view.dart';
 import 'package:newsappflutter/core/view/base_widget.dart';

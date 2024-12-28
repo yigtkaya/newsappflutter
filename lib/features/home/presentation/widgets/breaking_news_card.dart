@@ -52,9 +52,9 @@ final class _BuildImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: 'article_image_${article.uuid}',
+      tag: 'article_image_${article.title}',
       child: CachedNetworkImage(
-        imageUrl: article.imageUrl ?? '',
+        imageUrl: article.urlToImage ?? '',
         fit: BoxFit.cover,
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
@@ -172,7 +172,7 @@ final class _BuildSourceAndTime extends StatelessWidget {
           spacing: AppDesignConstants.spacingSmall,
           children: [
             Text(
-              article.source,
+              article.source?.name ?? '',
               style: context.textTheme.bodySmall?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -186,7 +186,7 @@ final class _BuildSourceAndTime extends StatelessWidget {
             ),
             Text(
               DateTime.parse(
-                article.publishedAt.toIso8601String(),
+                article.publishedAt!.toIso8601String(),
               ).formatForTripItem(),
               style: context.textTheme.bodySmall?.copyWith(
                 color: Colors.white,
@@ -208,7 +208,7 @@ final class _BuildTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      article.title,
+      article.title.toString(),
       style: context.textTheme.bodyLarge?.copyWith(
         color: Colors.white,
         fontWeight: FontWeight.w600,

@@ -22,10 +22,9 @@ class _NewsApiClient implements NewsApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<NewsResponse> getTopStories(Map<String, dynamic> queries) async {
+  Future<NewsResponse> getTopStories(Map<String, dynamic> request) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.addAll(queries);
+    final queryParameters = request;
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<NewsResponse>(Options(
@@ -35,7 +34,7 @@ class _NewsApiClient implements NewsApiClient {
     )
         .compose(
           _dio.options,
-          '/top',
+          '/top-headlines',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -56,10 +55,9 @@ class _NewsApiClient implements NewsApiClient {
   }
 
   @override
-  Future<NewsResponse> getAllNews(Map<String, dynamic> queries) async {
+  Future<NewsResponse> getAllNews(Map<String, dynamic> request) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.addAll(queries);
+    final queryParameters = request;
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<NewsResponse>(Options(
@@ -69,44 +67,7 @@ class _NewsApiClient implements NewsApiClient {
     )
         .compose(
           _dio.options,
-          '/all',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late NewsResponse _value;
-    try {
-      _value = NewsResponseMapper.fromMap(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<NewsResponse> getSimilarNews({
-    required String uuid,
-    required Map<String, dynamic> queries,
-  }) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    queryParameters.addAll(queries);
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<NewsResponse>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          '/similar/${uuid}',
+          '/everything',
           queryParameters: queryParameters,
           data: _data,
         )

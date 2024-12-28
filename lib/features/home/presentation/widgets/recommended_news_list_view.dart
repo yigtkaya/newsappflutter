@@ -14,7 +14,7 @@ final class RecommendedNewsListView extends BaseWidget<TopNewsCubit, TopNewsStat
         child: CircularProgressIndicator(),
       );
     } else if (state is TopNewsSuccess) {
-      final news = state.news.data;
+      final news = state.news.articles ?? [];
 
       if (news.isEmpty) {
         return Center(

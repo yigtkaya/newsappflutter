@@ -9,14 +9,22 @@ final class GetTopNewsUsecase {
   final NewsRepository _newsRepository;
 
   Future<Either<Failure, NewsResponse>> call({
-    String? locale,
-    int? limit,
-    String? categories,
+    String? country,
+    String? category,
+    List<String>? sources,
+    String? q,
+    int? pageSize,
+    int? page,
+    String? language,
   }) async {
-    return _newsRepository.getTopStories(
-      locale: locale,
-      limit: limit,
-      categories: categories,
+    return _newsRepository.getTopHeadlines(
+      country: country,
+      category: category,
+      sources: sources,
+      q: q,
+      pageSize: pageSize,
+      page: page,
+      language: language,
     );
   }
 }

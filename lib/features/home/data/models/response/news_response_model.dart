@@ -1,16 +1,17 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:newsappflutter/features/home/data/models/response/article_model.dart';
-import 'package:newsappflutter/features/home/data/models/response/meta_model.dart';
 
 part 'news_response_model.mapper.dart';
 
 @MappableClass()
 class NewsResponse with NewsResponseMappable {
-  const NewsResponse({
-    required this.meta,
-    required this.data,
+  NewsResponse({
+    this.status,
+    this.totalResults,
+    this.articles,
   });
 
-  final Meta meta;
-  final List<Article> data;
+  String? status;
+  int? totalResults;
+  List<Article>? articles;
 }

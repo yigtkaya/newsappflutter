@@ -1,7 +1,6 @@
 import 'package:newsappflutter/core/cubit/base_cubit.dart';
 import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/network/failure.dart';
-import 'package:newsappflutter/features/home/data/models/response/meta_model.dart';
 import 'package:newsappflutter/features/home/data/models/response/news_response_model.dart';
 import 'package:newsappflutter/features/home/domain/entities/news_entity.dart';
 import 'package:newsappflutter/features/home/domain/usecases/get_top_news_usecase.dart';
@@ -18,15 +17,36 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
   final GetTopNewsUsecase _getTopNewsUsecase;
 
   Future<void> getTopNews({
-    String? locale,
-    int? limit,
-    String? categories,
+    String? country, // 2-letter ISO 3166-1 code
+    String? category, // Can be: business,entertainment,general,health,science,
+    List<String>? sources,
+    String? q,
+    int? pageSize = 20, // Default 100, maximum 100
+    int? page = 1,
+    String? language, // 2-letter ISO-639-1 code
   }) async {
+    // Cannot mix sources parameter with country or category parameters
+    if (sources != null && (country != null || category != null)) {
+      safeEmit(
+        TopNewsFailure(
+          failure: Failure(
+            message: 'Cannot mix sources parameter with country or category parameters',
+            code: 'INVALID_PARAMS',
+          ),
+        ),
+      );
+      return;
+    }
+
     safeEmit(TopNewsLoading());
     final result = await _getTopNewsUsecase.call(
-      locale: locale,
-      limit: limit,
-      categories: categories,
+      country: country,
+      category: category,
+      sources: sources,
+      q: q,
+      pageSize: pageSize?.clamp(1, 100),
+      page: page,
+      language: language,
     );
 
     result.fold(
@@ -34,7 +54,7 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
       (news) {
         cacheNews(
           NewsEntity(
-            articles: news.data,
+            articles: news.articles ?? [],
             id: 'top_news_cache_key',
           ),
         );
@@ -42,22 +62,6 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
       },
     );
   }
-
-  // Future<void> getSimilarNews({
-  //   required String uuid,
-  //   int? limit,
-  // }) async {
-  //   emit(NewsLoading());
-  //   final result = await _getSimilarNewsUsecase.call(
-  //     uuid: uuid,
-  //     limit: limit,
-  //   );
-
-  //   result.fold(
-  //     (failure) => emit(NewsFailure(failure: failure)),
-  //     (news) => emit(NewsSuccess(news: news)),
-  //   );
-  // }
 
   Future<void> cacheNews(NewsEntity news) async {
     DepInItems.productCache.topNewsCacheOperation.add(news);
@@ -71,23 +75,19 @@ final class TopNewsCubit extends BaseCubit<TopNewsState> {
       safeEmit(
         TopNewsSuccess(
           news: NewsResponse(
-            meta: Meta(
-              page: 1,
-              found: cachedNews.articles.length,
-              returned: cachedNews.articles.length,
-              limit: cachedNews.articles.length,
-            ),
-            data: cachedNews.articles,
+            articles: cachedNews.articles,
           ),
         ),
       );
       return;
     }
 
-    // call getTopNews if no cached news
+    // call getTopNews if no cached news with default parameters
     await getTopNews(
-      locale: 'tr',
-      limit: 3,
+      country: 'us',
+      category: 'general',
+      pageSize: 20,
+      page: 1,
     );
   }
 }

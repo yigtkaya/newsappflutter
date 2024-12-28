@@ -13,6 +13,7 @@ class ArticleMapper extends ClassMapperBase<Article> {
   static ArticleMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ArticleMapper._());
+      SourceMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,62 +21,45 @@ class ArticleMapper extends ClassMapperBase<Article> {
   @override
   final String id = 'Article';
 
-  static String _$uuid(Article v) => v.uuid;
-  static const Field<Article, String> _f$uuid = Field('uuid', _$uuid);
-  static String _$title(Article v) => v.title;
-  static const Field<Article, String> _f$title = Field('title', _$title);
-  static String _$description(Article v) => v.description;
-  static const Field<Article, String> _f$description = Field('description', _$description);
-  static String? _$keywords(Article v) => v.keywords;
-  static const Field<Article, String> _f$keywords = Field('keywords', _$keywords);
-  static String _$snippet(Article v) => v.snippet;
-  static const Field<Article, String> _f$snippet = Field('snippet', _$snippet);
-  static String _$url(Article v) => v.url;
-  static const Field<Article, String> _f$url = Field('url', _$url);
-  static String? _$imageUrl(Article v) => v.imageUrl;
-  static const Field<Article, String> _f$imageUrl = Field('imageUrl', _$imageUrl, key: 'image_url');
-  static String _$language(Article v) => v.language;
-  static const Field<Article, String> _f$language = Field('language', _$language);
-  static DateTime _$publishedAt(Article v) => v.publishedAt;
-  static const Field<Article, DateTime> _f$publishedAt = Field('publishedAt', _$publishedAt, key: 'published_at');
-  static String _$source(Article v) => v.source;
-  static const Field<Article, String> _f$source = Field('source', _$source);
-  static List<String> _$categories(Article v) => v.categories;
-  static const Field<Article, List<String>> _f$categories = Field('categories', _$categories);
-  static double? _$relevanceScore(Article v) => v.relevanceScore;
-  static const Field<Article, double> _f$relevanceScore =
-      Field('relevanceScore', _$relevanceScore, key: 'relevance_score', opt: true);
+  static Source? _$source(Article v) => v.source;
+  static const Field<Article, Source> _f$source = Field('source', _$source, opt: true);
+  static String? _$author(Article v) => v.author;
+  static const Field<Article, String> _f$author = Field('author', _$author, opt: true);
+  static String? _$title(Article v) => v.title;
+  static const Field<Article, String> _f$title = Field('title', _$title, opt: true);
+  static String? _$description(Article v) => v.description;
+  static const Field<Article, String> _f$description = Field('description', _$description, opt: true);
+  static String? _$url(Article v) => v.url;
+  static const Field<Article, String> _f$url = Field('url', _$url, opt: true);
+  static String? _$urlToImage(Article v) => v.urlToImage;
+  static const Field<Article, String> _f$urlToImage = Field('urlToImage', _$urlToImage, opt: true);
+  static DateTime? _$publishedAt(Article v) => v.publishedAt;
+  static const Field<Article, DateTime> _f$publishedAt = Field('publishedAt', _$publishedAt, opt: true);
+  static String? _$content(Article v) => v.content;
+  static const Field<Article, String> _f$content = Field('content', _$content, opt: true);
 
   @override
   final MappableFields<Article> fields = const {
-    #uuid: _f$uuid,
+    #source: _f$source,
+    #author: _f$author,
     #title: _f$title,
     #description: _f$description,
-    #keywords: _f$keywords,
-    #snippet: _f$snippet,
     #url: _f$url,
-    #imageUrl: _f$imageUrl,
-    #language: _f$language,
+    #urlToImage: _f$urlToImage,
     #publishedAt: _f$publishedAt,
-    #source: _f$source,
-    #categories: _f$categories,
-    #relevanceScore: _f$relevanceScore,
+    #content: _f$content,
   };
 
   static Article _instantiate(DecodingData data) {
     return Article(
-        uuid: data.dec(_f$uuid),
+        source: data.dec(_f$source),
+        author: data.dec(_f$author),
         title: data.dec(_f$title),
         description: data.dec(_f$description),
-        keywords: data.dec(_f$keywords),
-        snippet: data.dec(_f$snippet),
         url: data.dec(_f$url),
-        imageUrl: data.dec(_f$imageUrl),
-        language: data.dec(_f$language),
+        urlToImage: data.dec(_f$urlToImage),
         publishedAt: data.dec(_f$publishedAt),
-        source: data.dec(_f$source),
-        categories: data.dec(_f$categories),
-        relevanceScore: data.dec(_f$relevanceScore));
+        content: data.dec(_f$content));
   }
 
   @override
@@ -122,20 +106,16 @@ extension ArticleValueCopy<$R, $Out> on ObjectCopyWith<$R, Article, $Out> {
 }
 
 abstract class ArticleCopyWith<$R, $In extends Article, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get categories;
+  SourceCopyWith<$R, Source, Source>? get source;
   $R call(
-      {String? uuid,
+      {Source? source,
+      String? author,
       String? title,
       String? description,
-      String? keywords,
-      String? snippet,
       String? url,
-      String? imageUrl,
-      String? language,
+      String? urlToImage,
       DateTime? publishedAt,
-      String? source,
-      List<String>? categories,
-      double? relevanceScore});
+      String? content});
   ArticleCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -146,50 +126,37 @@ class _ArticleCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Article, $Out
   @override
   late final ClassMapperBase<Article> $mapper = ArticleMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get categories =>
-      ListCopyWith($value.categories, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(categories: v));
+  SourceCopyWith<$R, Source, Source>? get source => $value.source?.copyWith.$chain((v) => call(source: v));
   @override
   $R call(
-          {String? uuid,
-          String? title,
-          String? description,
-          Object? keywords = $none,
-          String? snippet,
-          String? url,
-          Object? imageUrl = $none,
-          String? language,
-          DateTime? publishedAt,
-          String? source,
-          List<String>? categories,
-          Object? relevanceScore = $none}) =>
+          {Object? source = $none,
+          Object? author = $none,
+          Object? title = $none,
+          Object? description = $none,
+          Object? url = $none,
+          Object? urlToImage = $none,
+          Object? publishedAt = $none,
+          Object? content = $none}) =>
       $apply(FieldCopyWithData({
-        if (uuid != null) #uuid: uuid,
-        if (title != null) #title: title,
-        if (description != null) #description: description,
-        if (keywords != $none) #keywords: keywords,
-        if (snippet != null) #snippet: snippet,
-        if (url != null) #url: url,
-        if (imageUrl != $none) #imageUrl: imageUrl,
-        if (language != null) #language: language,
-        if (publishedAt != null) #publishedAt: publishedAt,
-        if (source != null) #source: source,
-        if (categories != null) #categories: categories,
-        if (relevanceScore != $none) #relevanceScore: relevanceScore
+        if (source != $none) #source: source,
+        if (author != $none) #author: author,
+        if (title != $none) #title: title,
+        if (description != $none) #description: description,
+        if (url != $none) #url: url,
+        if (urlToImage != $none) #urlToImage: urlToImage,
+        if (publishedAt != $none) #publishedAt: publishedAt,
+        if (content != $none) #content: content
       }));
   @override
   Article $make(CopyWithData data) => Article(
-      uuid: data.get(#uuid, or: $value.uuid),
+      source: data.get(#source, or: $value.source),
+      author: data.get(#author, or: $value.author),
       title: data.get(#title, or: $value.title),
       description: data.get(#description, or: $value.description),
-      keywords: data.get(#keywords, or: $value.keywords),
-      snippet: data.get(#snippet, or: $value.snippet),
       url: data.get(#url, or: $value.url),
-      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
-      language: data.get(#language, or: $value.language),
+      urlToImage: data.get(#urlToImage, or: $value.urlToImage),
       publishedAt: data.get(#publishedAt, or: $value.publishedAt),
-      source: data.get(#source, or: $value.source),
-      categories: data.get(#categories, or: $value.categories),
-      relevanceScore: data.get(#relevanceScore, or: $value.relevanceScore));
+      content: data.get(#content, or: $value.content));
 
   @override
   ArticleCopyWith<$R2, Article, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) => _ArticleCopyWithImpl($value, $cast, t);

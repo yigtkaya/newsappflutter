@@ -13,7 +13,6 @@ class NewsResponseMapper extends ClassMapperBase<NewsResponse> {
   static NewsResponseMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NewsResponseMapper._());
-      MetaMapper.ensureInitialized();
       ArticleMapper.ensureInitialized();
     }
     return _instance!;
@@ -22,19 +21,23 @@ class NewsResponseMapper extends ClassMapperBase<NewsResponse> {
   @override
   final String id = 'NewsResponse';
 
-  static Meta _$meta(NewsResponse v) => v.meta;
-  static const Field<NewsResponse, Meta> _f$meta = Field('meta', _$meta);
-  static List<Article> _$data(NewsResponse v) => v.data;
-  static const Field<NewsResponse, List<Article>> _f$data = Field('data', _$data);
+  static String? _$status(NewsResponse v) => v.status;
+  static const Field<NewsResponse, String> _f$status = Field('status', _$status, opt: true);
+  static int? _$totalResults(NewsResponse v) => v.totalResults;
+  static const Field<NewsResponse, int> _f$totalResults = Field('totalResults', _$totalResults, opt: true);
+  static List<Article>? _$articles(NewsResponse v) => v.articles;
+  static const Field<NewsResponse, List<Article>> _f$articles = Field('articles', _$articles, opt: true);
 
   @override
   final MappableFields<NewsResponse> fields = const {
-    #meta: _f$meta,
-    #data: _f$data,
+    #status: _f$status,
+    #totalResults: _f$totalResults,
+    #articles: _f$articles,
   };
 
   static NewsResponse _instantiate(DecodingData data) {
-    return NewsResponse(meta: data.dec(_f$meta), data: data.dec(_f$data));
+    return NewsResponse(
+        status: data.dec(_f$status), totalResults: data.dec(_f$totalResults), articles: data.dec(_f$articles));
   }
 
   @override
@@ -82,9 +85,8 @@ extension NewsResponseValueCopy<$R, $Out> on ObjectCopyWith<$R, NewsResponse, $O
 }
 
 abstract class NewsResponseCopyWith<$R, $In extends NewsResponse, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  MetaCopyWith<$R, Meta, Meta> get meta;
-  ListCopyWith<$R, Article, ArticleCopyWith<$R, Article, Article>> get data;
-  $R call({Meta? meta, List<Article>? data});
+  ListCopyWith<$R, Article, ArticleCopyWith<$R, Article, Article>>? get articles;
+  $R call({String? status, int? totalResults, List<Article>? articles});
   NewsResponseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -95,16 +97,21 @@ class _NewsResponseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, NewsResp
   @override
   late final ClassMapperBase<NewsResponse> $mapper = NewsResponseMapper.ensureInitialized();
   @override
-  MetaCopyWith<$R, Meta, Meta> get meta => $value.meta.copyWith.$chain((v) => call(meta: v));
+  ListCopyWith<$R, Article, ArticleCopyWith<$R, Article, Article>>? get articles => $value.articles != null
+      ? ListCopyWith($value.articles!, (v, t) => v.copyWith.$chain(t), (v) => call(articles: v))
+      : null;
   @override
-  ListCopyWith<$R, Article, ArticleCopyWith<$R, Article, Article>> get data =>
-      ListCopyWith($value.data, (v, t) => v.copyWith.$chain(t), (v) => call(data: v));
+  $R call({Object? status = $none, Object? totalResults = $none, Object? articles = $none}) =>
+      $apply(FieldCopyWithData({
+        if (status != $none) #status: status,
+        if (totalResults != $none) #totalResults: totalResults,
+        if (articles != $none) #articles: articles
+      }));
   @override
-  $R call({Meta? meta, List<Article>? data}) =>
-      $apply(FieldCopyWithData({if (meta != null) #meta: meta, if (data != null) #data: data}));
-  @override
-  NewsResponse $make(CopyWithData data) =>
-      NewsResponse(meta: data.get(#meta, or: $value.meta), data: data.get(#data, or: $value.data));
+  NewsResponse $make(CopyWithData data) => NewsResponse(
+      status: data.get(#status, or: $value.status),
+      totalResults: data.get(#totalResults, or: $value.totalResults),
+      articles: data.get(#articles, or: $value.articles));
 
   @override
   NewsResponseCopyWith<$R2, NewsResponse, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

@@ -31,7 +31,7 @@ final class RecommendedNewsCard extends StatelessWidget {
                 AppDesignConstants.borderRadiusMedium,
               ),
               child: CachedNetworkImage(
-                imageUrl: article.imageUrl ?? '',
+                imageUrl: article.urlToImage ?? '',
                 width: 100.w,
                 height: 100.h,
                 fit: BoxFit.cover,
@@ -53,14 +53,14 @@ final class RecommendedNewsCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    article.categories.first.capitalizeFirstLetter(),
+                    context.l10n.general,
                     style: context.textTheme.bodySmall?.copyWith(
                       color: AppColors.kGrey,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   Text(
-                    article.title,
+                    article.title.toString(),
                     style: context.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -72,7 +72,7 @@ final class RecommendedNewsCard extends StatelessWidget {
                     children: [
                       Flexible(
                         child: Text(
-                          article.source,
+                          article.source?.name ?? '',
                           style: context.textTheme.bodySmall?.copyWith(
                             color: AppColors.kGrey,
                           ),
@@ -84,7 +84,7 @@ final class RecommendedNewsCard extends StatelessWidget {
                         size: 16.w,
                       ),
                       Text(
-                        article.publishedAt.formattedDateTime(),
+                        article.publishedAt!.formattedDateTime(),
                         overflow: TextOverflow.ellipsis,
                         style: context.textTheme.bodySmall?.copyWith(
                           color: AppColors.kGrey,

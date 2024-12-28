@@ -16,10 +16,14 @@ final class ArticleImage extends StatelessWidget {
           width: double.infinity,
           height: context.screenHeight * 0.6,
           child: Hero(
-            tag: 'article_image_${article.uuid}',
+            tag: 'article_image_${article.title}',
             child: CachedNetworkImage(
-              imageUrl: article.imageUrl ?? '',
+              imageUrl: article.urlToImage ?? '',
               fit: BoxFit.cover,
+              memCacheHeight: (context.screenHeight * 0.6).round(), // Set appropriate height for memory cache
+              memCacheWidth: context.screenWidth.round(), // Set appropriate width for memory cache
+              maxWidthDiskCache: 2048, // Set maximum width for disk cache
+              maxHeightDiskCache: 2048, // Set maximum height for disk cache
               fadeInDuration: const Duration(milliseconds: 300),
               fadeOutDuration: const Duration(milliseconds: 300),
               imageBuilder: (context, imageProvider) => Container(
@@ -57,7 +61,7 @@ final class ArticleImage extends StatelessWidget {
             spacing: AppDesignConstants.spacingMedium,
             children: [
               Text(
-                article.title,
+                article.title.toString(),
                 textAlign: TextAlign.start,
                 style: context.textTheme.titleSmall!.copyWith(
                   color: AppColors.kWhite,
@@ -78,7 +82,7 @@ final class ArticleImage extends StatelessWidget {
                       ),
                     ),
                     child: Text(
-                      article.categories.isEmpty ? '' : article.categories.first.capitalizeFirstLetter(),
+                      context.l10n.general,
                       style: context.textTheme.bodySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
@@ -91,7 +95,7 @@ final class ArticleImage extends StatelessWidget {
                     color: AppColors.kWhite,
                   ),
                   Text(
-                    article.publishedAt.formattedDateTime(),
+                    article.publishedAt!.formattedDateTime(),
                     textAlign: TextAlign.start,
                     style: context.textTheme.bodyLarge!.copyWith(
                       color: AppColors.kWhite,

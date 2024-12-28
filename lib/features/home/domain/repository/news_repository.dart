@@ -4,25 +4,29 @@ import 'package:newsappflutter/features/home/data/models/response/news_response_
 
 /// News Repository
 abstract interface class NewsRepository {
-  /// Get top stories
-  Future<Either<Failure, NewsResponse>> getTopStories({
-    String? locale,
-    int? limit,
-    String? categories,
-  });
-
-  /// Get all news
-  Future<Either<Failure, NewsResponse>> getAllNews({
-    String? locale,
-    int? limit,
-    String? categories,
-    String? search,
+  /// Get top headlines news
+  Future<Either<Failure, NewsResponse>> getTopHeadlines({
+    String? country,
+    String? category,
+    List<String>? sources,
+    String? q,
+    int? pageSize,
     int? page,
+    String? language,
   });
 
-  /// Get similar news
-  Future<Either<Failure, NewsResponse>> getSimilarNews({
-    required String uuid,
-    int? limit,
+  /// Get everything news
+  Future<Either<Failure, NewsResponse>> getEverything({
+    String? q,
+    List<String>? searchIn,
+    List<String>? sources,
+    List<String>? domains,
+    List<String>? excludeDomains,
+    DateTime? from,
+    DateTime? to,
+    String? language,
+    String? sortBy,
+    int? pageSize,
+    int? page,
   });
 }

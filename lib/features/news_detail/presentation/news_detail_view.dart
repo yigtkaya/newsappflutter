@@ -10,7 +10,7 @@ import 'package:newsappflutter/core/constants/app_design_constant.dart';
 import 'package:newsappflutter/core/di/dependecy_injection.dart';
 import 'package:newsappflutter/core/extensions/build_context_extension.dart';
 import 'package:newsappflutter/core/extensions/date_time_extensions.dart';
-import 'package:newsappflutter/core/extensions/string_extension.dart';
+import 'package:newsappflutter/core/extensions/language_extension.dart';
 import 'package:newsappflutter/core/view/base_view.dart';
 import 'package:newsappflutter/core/view/base_widget.dart';
 import 'package:newsappflutter/features/bookmarks/cubit/bookmarks_cubit.dart';

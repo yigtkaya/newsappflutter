@@ -10,7 +10,7 @@ final class BreakingArticlesWidget extends BaseWidget<NewsCubit, NewsState> {
       child: switch (state) {
         NewsSuccess(news: final news) => BlocProvider(
             create: (context) => DepInItems.carouselCubit,
-            child: _CarouselWidget(articles: news.data),
+            child: _CarouselWidget(articles: news.articles ?? []),
           ),
         NewsFailure() => Center(
             child: Text(

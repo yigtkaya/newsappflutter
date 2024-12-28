@@ -165,4 +165,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clearAll => 'Clear All';
+
+  @override
+  String get general => 'General';
 }

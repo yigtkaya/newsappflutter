@@ -1,7 +1,6 @@
 import 'package:newsappflutter/core/cubit/base_cubit.dart';
 import 'package:newsappflutter/core/di/dependecy_injection_items.dart';
 import 'package:newsappflutter/core/network/failure.dart';
-import 'package:newsappflutter/features/home/data/models/response/meta_model.dart';
 import 'package:newsappflutter/features/home/data/models/response/news_response_model.dart';
 import 'package:newsappflutter/features/home/domain/entities/news_entity.dart';
 import 'package:newsappflutter/features/home/domain/usecases/get_all_news_usecase.dart';
@@ -18,18 +17,30 @@ final class NewsCubit extends BaseCubit<NewsState> {
   final GetAllNewsUsecase _getAllNewsUsecase;
 
   Future<void> getAllNews({
-    String? locale,
-    int? limit,
-    String? categories,
-    String? search,
-    int? page,
+    required String q,
+    List<String>? searchIn,
+    List<String>? sources,
+    List<String>? domains,
+    List<String>? excludeDomains,
+    DateTime? from,
+    DateTime? to,
+    String? language,
+    String? sortBy,
+    int? pageSize = 20,
+    int? page = 1,
   }) async {
     safeEmit(NewsLoading());
     final result = await _getAllNewsUsecase.call(
-      locale: locale,
-      limit: limit,
-      categories: categories,
-      search: search,
+      q: q,
+      searchIn: searchIn,
+      sources: sources,
+      domains: domains,
+      excludeDomains: excludeDomains,
+      from: from,
+      to: to,
+      language: language,
+      sortBy: sortBy ?? 'publishedAt',
+      pageSize: pageSize?.clamp(1, 100),
       page: page,
     );
 
@@ -38,7 +49,7 @@ final class NewsCubit extends BaseCubit<NewsState> {
       (news) {
         cacheNews(
           NewsEntity(
-            articles: news.data,
+            articles: news.articles ?? [],
             id: 'news_cache_key',
           ),
         );
@@ -46,22 +57,6 @@ final class NewsCubit extends BaseCubit<NewsState> {
       },
     );
   }
-
-  // Future<void> getSimilarNews({
-  //   required String uuid,
-  //   int? limit,
-  // }) async {
-  //   emit(NewsLoading());
-  //   final result = await _getSimilarNewsUsecase.call(
-  //     uuid: uuid,
-  //     limit: limit,
-  //   );
-
-  //   result.fold(
-  //     (failure) => emit(NewsFailure(failure: failure)),
-  //     (news) => emit(NewsSuccess(news: news)),
-  //   );
-  // }
 
   Future<void> cacheNews(NewsEntity news) async {
     DepInItems.productCache.newsCacheOperation.add(news);
@@ -75,24 +70,18 @@ final class NewsCubit extends BaseCubit<NewsState> {
       safeEmit(
         NewsSuccess(
           news: NewsResponse(
-            meta: Meta(
-              page: 1,
-              found: cachedNews.articles.length,
-              returned: cachedNews.articles.length,
-              limit: cachedNews.articles.length,
-            ),
-            data: cachedNews.articles,
+            articles: cachedNews.articles,
           ),
         ),
       );
       return;
     }
 
-    // call getAllNews if no cached news
+    // call getAllNews if no cached news with default parameters
     await getAllNews(
-      locale: 'tr',
-      limit: 3,
-      page: 1,
+      q: 'news',
+      language: 'en',
+      sortBy: 'publishedAt',
     );
   }
 }

@@ -50,5 +50,6 @@
   "home": "Home",
   "bookmarks": "Bookmarks",
   "noBookmarks": "No bookmarks yet",
-  "clearAll": "Clear All"
+  "clearAll": "Clear All",
+  "general": "General"
 }

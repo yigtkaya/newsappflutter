@@ -11,17 +11,10 @@ abstract class NewsApiClient {
   factory NewsApiClient(Dio dio) = _NewsApiClient;
 
   /// Get top stories
-  @GET('/top')
-  Future<NewsResponse> getTopStories(@Queries() Map<String, dynamic> queries);
+  @GET('/top-headlines')
+  Future<NewsResponse> getTopStories(Map<String, dynamic> request);
 
   /// Get all news
-  @GET('/all')
-  Future<NewsResponse> getAllNews(@Queries() Map<String, dynamic> queries);
-
-  /// Get similar news
-  @GET('/similar/{uuid}')
-  Future<NewsResponse> getSimilarNews({
-    @Path('uuid') required String uuid,
-    @Queries() required Map<String, dynamic> queries,
-  });
+  @GET('/everything')
+  Future<NewsResponse> getAllNews(Map<String, dynamic> request);
 }

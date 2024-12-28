@@ -47,7 +47,7 @@ final class BookmarButtonWidget extends BaseWidget<BookmarksCubit, BookmarksStat
   ) {
     final isBookmarked = switch (state) {
       BookmarksSuccess(bookmarkedNews: final news) => news.any(
-          (element) => element.uuid == article.uuid,
+          (element) => element.title == article.title,
         ),
       BookmarksLoading() => false,
       BookmarksInitial() => false,
@@ -64,7 +64,7 @@ final class BookmarButtonWidget extends BaseWidget<BookmarksCubit, BookmarksStat
           ),
           onPressed: () async {
             if (isBookmarked) {
-              await cubit.removeFromBookmarks(article.uuid);
+              await cubit.removeFromBookmarks(article.title.toString());
             } else {
               await cubit.bookmarkNews(article);
             }
